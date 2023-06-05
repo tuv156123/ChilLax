@@ -1,4 +1,4 @@
---程式化語法產生多筆 product_order 與 OrderDetail 資料
+--由迴圈產生多筆 product_order 與 OrderDetail 資料
 --設定產生比數變數為@data_row 由新增語法貼上 EXEC [dbo].[sp_generate_order] data_row; 執行
 --此檔案存入 procedures(預存程序) 呼叫執行
 CREATE PROCEDURE dbo.sp_generate_order(@data_row int = 1) AS 
