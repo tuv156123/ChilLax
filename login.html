@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>登入註冊</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- NAVBAR CREATION -->
+    <header class="header">
+      <nav class="navbar">
+        <a href="#">Home</a>
+        <a href="#">Portfolio</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Help</a>
+      </nav>
+    </header>
+    <!-- LOGIN FORM CREATION -->
+    <div class="background"></div>
+    <article>
+      <div class="main container">
+        <div class="row login-section">
+          <div class="form-box login col-md-12">
+            <form action="">
+              <h2>Sign In</h2>
+              <h5>會員登入</h5>
+              <div class="create-account">
+                <p>
+                  還沒有帳號?
+                  <a href="#" class="register-link">進行會員註冊</a>
+                </p>
+              </div>
+              <div class="input-box">
+                <span class="icon"><i class="bx bxs-envelope"></i></span>
+                <input type="email" required />
+                <label>帳號</label>
+              </div>
+              <div class="input-box">
+                <span class="icon"><i class="bx bxs-lock-alt"></i></span>
+                <input type="password" required />
+                <label>密碼</label>
+              </div>
+              <div class="remember-password">
+                <label for="checkbox"><input type="checkbox" id="checkbox" class="remeber_account"/>記住帳號</label>
+                <a href="#" class="forget_password">忘記密碼</a>
+              </div>
+              <button class="btn">登入</button>
+              <div class="other-login">
+                <div class="divider">
+                    <span class="line"></span>
+                    <span class="divider-text">其他登入方式</span>
+                    <span class="line"></span>
+                </div>
+                <div class="other-login-wrapper">
+                    <div class="other-login-item">
+                        <img src="images/Google.svg" alt="google">
+                    </div>
+                    <div class="other-login-item">
+                        <img src="images/Facebook.svg" alt="facebook">
+                    </div>
+                    <div class="other-login-item">
+                      <img src="images/LINE.png" alt="line">
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="form-box register col-md-12 ">
+            <form action="">
+              <h2>Sign Up</h2>
+              <h5>會員註冊</h5>
+              <div class="create-account">
+                <p>
+                  已經有帳號?
+                  <a href="#" class="login-link">進入會員登入</a>
+                </p>
+              </div>
+              <div class="input-box">
+                <span class="icon"><i class="bx bxs-user"></i></span>
+                <input type="text" required />
+                <label>帳號</label>
+              </div>
+              <div class="input-box">
+                <span class="icon"><i class="bx bxs-lock-alt"></i></span>
+                <input type="password" required />
+                <label>密碼</label>
+              </div>
+              <div class="input-box">
+                <span class="icon"><i class="bx bxs-lock-alt"></i></span>
+                <input type="password" required />
+                <label>確認密碼</label>
+              </div>
+              <button class="btn">註冊</button>
+              <div class="other-login">
+                <div class="divider">
+                    <span class="line"></span>
+                    <span class="divider-text">其他註冊方式</span>
+                    <span class="line"></span>
+                </div>
+                <div class="other-login-wrapper">
+                    <div class="other-login-item">
+                        <img src="images/Google.svg" alt="google">
+                    </div>
+                    <div class="other-login-item">
+                        <img src="images/Facebook.svg" alt="facebook">
+                    </div>
+                    <div class="other-login-item">
+                      <img src="images/LINE.png" alt="line">
+                  </div>
+                </div>
+              </div>       
+            </form>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <footer class="footer bg-dark">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+          </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- SIGN UP FORM CREATION -->
+
+    <script src="js/login.js"></script>
+  </body>
+</html>
