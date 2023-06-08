@@ -24,25 +24,24 @@ BEGIN
     VALUES (@supplier_id, @purchase_note, @purchase_date);
 --------------------------------------------存入請購單詳細資料表--------------------------------------
     SET @product_id = (SELECT TOP 1 PRODUCT_ID
-					  FROM PRODUCT P
-					  INNER JOIN SUPPLIER S ON P.SUPPLIER_ID = S.SUPPLIER_ID
-					  WHERE S.SUPPLIER_ID = @supplier_id);
+                      FROM PRODUCT P
+                      INNER JOIN SUPPLIER S ON P.SUPPLIER_ID = S.SUPPLIER_ID
+                      WHERE S.SUPPLIER_ID = @supplier_id);
 
-	SET @purchase_quantity = (FLOOR(RAND() * 10) + 1) * 10;
-
-	SET @purchase_price = (SELECT p.PRODUCT_PRICE  FROM dbo.PRODUCT P WHERE p.PRODUCT_ID = @product_id) / 2;
-
-	INSERT INTO ChilLax.dbo.PurchaseDetail
-	(purchase_id, product_id, purchase_quantity, purchase_price)
-	VALUES( 
-			@@IDENTITY,
-			@product_id,
-			@purchase_quantity,
-			@purchase_price
-	);
-	
-
-
+    SET @purchase_quantity = (FLOOR(RAND() * 10) + 1) * 10;
+    SET @purchase_price = (
+        SELECT p.PRODUCT_PRICE  
+        FROM dbo.PRODUCT P 
+        WHERE p.PRODUCT_ID = @product_id) / 2;
+    
+    INSERT INTO ChilLax.dbo.PurchaseDetail
+    (purchase_id, product_id, purchase_quantity, purchase_price)
+    VALUES( 
+            @@IDENTITY,
+            @product_id,
+            @purchase_quantity,
+            @purchase_price
+    );
     
     SET @counter = @counter + 1;
 END;
