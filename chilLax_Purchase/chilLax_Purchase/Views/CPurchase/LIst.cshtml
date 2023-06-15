@@ -9,7 +9,7 @@
 <p>
     <a asp-action="Create">商品訂貨單</a>
 </p>
-<table class="table">
+<table class="table table-striped table-hover">
     <thead>
         <tr>
             <th>
@@ -18,14 +18,17 @@
             <th>
                 @Html.DisplayNameFor(model => model.MemberName)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.ProductOrder.OrderPayment)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.ProductOrder.OrderTotalPrice)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ProductOrder.OrderDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductOrder.OrderAddress)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ProductOrder.OrderNote)
@@ -39,6 +42,7 @@
         @foreach (var group in Model.GroupBy(item => item.ProductOrder.OrderId))
         {
             var firstItem = group.First();
+            var item = group;
             <tr class="clickable-row">
                 <td>
                     @Html.DisplayFor(modelItem => firstItem.ProductOrder.OrderId)
@@ -46,9 +50,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => firstItem.MemberName)
                 </td>
-                <td>
+             @*   <td>
                     @Html.DisplayFor(modelItem => firstItem.ProductOrder.OrderPayment)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => firstItem.ProductOrder.OrderTotalPrice)
                 </td>
@@ -56,16 +60,25 @@
                     @Html.DisplayFor(modelItem => firstItem.ProductOrder.OrderDate)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => firstItem.ProductOrder.OrderAddress)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => firstItem.ProductOrder.OrderNote)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => firstItem.ProductOrder.OrderState)
                 </td>
+                <td>
+                    @Html.ActionLink("修改", "Edit", "Product", new { id = firstItem.ProductOrder.OrderId },
+                new { @class = "btn btn-success" }) |
+                    @Html.ActionLink("刪除", "Delete", "Product", new { id = firstItem.ProductOrder.OrderId },
+                new { onclick = "return confirm('確定要刪除嗎?')", Class = "btn btn-danger" })
+                </td>
             </tr>
             <tr class="details-row" id="details-row-@(firstItem.ProductOrder.OrderId)" style="display: none;">
                 <td colspan="7">
                     <!-- 詳細資料區塊 -->
-                    <table>
+                    <table class="table table-striped table-hover">
                         <thead>
                             <tr>
                                 <th>商品名稱</th>
@@ -75,8 +88,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var detail in group)
+                            @foreach (var detail in Model.Where(d => d.ProductOrder.OrderId == firstItem.ProductOrder.OrderId))
                             {
+                               
                                 <tr>
                                     <td>@detail.ProductName</td>
                                     <td>@detail.OrderDetail.CartProductQuantity</td>
@@ -84,6 +98,7 @@
                                     <td>@detail.Subtotal</td>
                                 </tr>
                             }
+
                         </tbody>
                     </table>
                 </td>

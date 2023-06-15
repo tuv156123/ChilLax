@@ -22,8 +22,8 @@ namespace chilLax_Purchase.Controllers
                         ProductOrder = po,
                         OrderDetail = od
                     })
-                .GroupBy(item => item.ProductOrder.OrderId)
-                .Select(group => group.FirstOrDefault())
+                //.GroupBy(item => item.ProductOrder.OrderId)
+                //.Select(group => group.FirstOrDefault())
                 .ToList();
 
             return View(productOrderDetails);
