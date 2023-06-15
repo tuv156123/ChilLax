@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\chilLax_Purchase.props" />
+</Project>

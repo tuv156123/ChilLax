@@ -1,0 +1,53 @@
+﻿@model IEnumerable<chilLax_Purchase.Models.ProductOrderDetail>
+
+@{
+    ViewData["Title"] = "LIst";
+}
+
+<h1>商品訂貨單列表</h1>
+
+<p>
+    <a asp-action="Create">商品訂貨單</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductOrder.OrderId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductOrder.OrderDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductOrder.OrderPayment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductOrder.OrderState)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                    @Html.DisplayFor(modelItem => item.ProductOrder.OrderId)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.ProductOrder.OrderDate)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.ProductOrder.OrderPayment)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.ProductOrder.OrderState)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

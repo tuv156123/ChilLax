@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\chilLax_Purchase.props" />
+</Project>
