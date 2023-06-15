@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<chilLax_Purchase.Models.ProductOrderDetail>
 
 @{
-    ViewData["Title"] = "LIst";
+    ViewData["Title"] = "List";
 }
 
 <h1>商品訂貨單列表</h1>
@@ -16,38 +16,98 @@
                 @Html.DisplayNameFor(model => model.ProductOrder.OrderId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductOrder.OrderDate)
+                @Html.DisplayNameFor(model => model.MemberName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ProductOrder.OrderPayment)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.ProductOrder.OrderTotalPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductOrder.OrderDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductOrder.OrderNote)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.ProductOrder.OrderState)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                    @Html.DisplayFor(modelItem => item.ProductOrder.OrderId)
-            </td>
-            <td>
-                    @Html.DisplayFor(modelItem => item.ProductOrder.OrderDate)
-            </td>
-            <td>
-                    @Html.DisplayFor(modelItem => item.ProductOrder.OrderPayment)
-            </td>
-            <td>
-                    @Html.DisplayFor(modelItem => item.ProductOrder.OrderState)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+        @foreach (var group in Model.GroupBy(item => item.ProductOrder.OrderId))
+        {
+            var firstItem = group.First();
+            <tr class="clickable-row">
+                <td>
+                    @Html.DisplayFor(modelItem => firstItem.ProductOrder.OrderId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => firstItem.MemberName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => firstItem.ProductOrder.OrderPayment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => firstItem.ProductOrder.OrderTotalPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => firstItem.ProductOrder.OrderDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => firstItem.ProductOrder.OrderNote)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => firstItem.ProductOrder.OrderState)
+                </td>
+            </tr>
+            <tr class="details-row" id="details-row-@(firstItem.ProductOrder.OrderId)" style="display: none;">
+                <td colspan="7">
+                    <!-- 詳細資料區塊 -->
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>商品名稱</th>
+                                <th>商品數量</th>
+                                <th>商品價格</th>
+                                <th>商品小計</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var detail in group)
+                            {
+                                <tr>
+                                    <td>@detail.ProductName</td>
+                                    <td>@detail.OrderDetail.CartProductQuantity</td>
+                                    <td>@detail.ProductPrice</td>
+                                    <td>@detail.Subtotal</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        }
+
     </tbody>
 </table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $(".clickable-row").click(function () {
+                var orderId = $(this).find("td:first").text().trim();
+                var detailsRow = $("#details-row-" + orderId);
+
+                if (detailsRow.is(":visible")) {
+                    detailsRow.hide();
+                } else {
+                    $(".details-row").hide();
+                    detailsRow.show();
+                }
+            });
+        });
+    </script>
+}
+
