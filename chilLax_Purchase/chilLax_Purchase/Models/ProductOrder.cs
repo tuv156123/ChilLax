@@ -12,7 +12,7 @@ public partial class ProductOrder
 	[DisplayName("會員編號")]
 	public int MemberId { get; set; }
 
-	[DisplayName("付款方式")]
+	[DisplayName("是否已付款")]
 	public bool OrderPayment { get; set; }
 
 	[DisplayName("訂單總價")]

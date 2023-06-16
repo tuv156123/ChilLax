@@ -69,9 +69,9 @@
                     @Html.DisplayFor(modelItem => firstItem.ProductOrder.OrderState)
                 </td>
                 <td>
-                    @Html.ActionLink("修改", "Edit", "Product", new { id = firstItem.ProductOrder.OrderId },
+                    @Html.ActionLink("修改", "Edit", "CPurchase", new { id = firstItem.ProductOrder.OrderId },
                 new { @class = "btn btn-success" }) |
-                    @Html.ActionLink("刪除", "Delete", "Product", new { id = firstItem.ProductOrder.OrderId },
+                    @Html.ActionLink("刪除", "Detail", "CPurchase", new { id = firstItem.ProductOrder.OrderId },
                 new { onclick = "return confirm('確定要刪除嗎?')", Class = "btn btn-danger" })
                 </td>
             </tr>
@@ -81,10 +81,10 @@
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>商品名稱</th>
-                                <th>商品數量</th>
-                                <th>商品價格</th>
-                                <th>商品小計</th>
+                                <th>@Html.DisplayNameFor(model => model.ProductName)</th>
+                                <th>@Html.DisplayNameFor(model => model.OrderDetail.CartProductQuantity)</th>
+                                <th>@Html.DisplayNameFor(model => model.ProductPrice)</th>
+                                <th>@Html.DisplayNameFor(model => model.Subtotal)</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -112,8 +112,8 @@
     <script>
         $(document).ready(function () {
             $(".clickable-row").click(function () {
-                var orderId = $(this).find("td:first").text().trim();
-                var detailsRow = $("#details-row-" + orderId);
+                let orderId = $(this).find("td:first").text().trim();
+                let detailsRow = $("#details-row-" + orderId);
 
                 if (detailsRow.is(":visible")) {
                     detailsRow.hide();

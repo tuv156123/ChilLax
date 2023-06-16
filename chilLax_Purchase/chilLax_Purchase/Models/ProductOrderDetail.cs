@@ -24,26 +24,16 @@ namespace chilLax_Purchase.Models
             }
         }
         [DisplayName("會員姓名")]
-        public string MemberName
-        {
-            get
-            {
-                return db.Members
+        public string MemberName => db.Members
                     .Where(p => p.MemberId == ProductOrder.MemberId)
                     .Select(p => p.MemberName)
                     .FirstOrDefault();
-            }
-        }
-        public string ProductName
-        {
-            get
-            {
-                return db.Products
+            
+        [DisplayName("商品名稱")]
+        public string ProductName => db.Products
                     .Where(p => p.ProductId == OrderDetail.ProductId)
                     .Select(p => p.ProductName)
                     .FirstOrDefault();
-            }
-        }
     }
 
 }

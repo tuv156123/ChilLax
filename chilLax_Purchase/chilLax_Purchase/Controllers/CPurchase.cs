@@ -21,14 +21,36 @@ namespace chilLax_Purchase.Controllers
                     {
                         ProductOrder = po,
                         OrderDetail = od
-                    })
-                //.GroupBy(item => item.ProductOrder.OrderId)
-                //.Select(group => group.FirstOrDefault())
-                .ToList();
+                    }).ToList();
 
             return View(productOrderDetails);
         }
-
-
+        public IActionResult Detail(int? id)
+        {
+            if (id != null)
+            {
+                ChilLaxContext db = new ChilLaxContext();
+                ProductOrder prod = db.ProductOrders.FirstOrDefault(p => p.OrderId == id);
+                OrderDetail detail = db.OrderDetails.FirstOrDefault(p => p.OrderId == id);
+                if (prod != null || detail != null)
+                {
+                    db.ProductOrders.Remove(prod);
+                    db.OrderDetails.Remove(detail);
+                    db.SaveChanges();
+                }
+            }
+            return RedirectToAction("List");
+        }
+        public IActionResult Edit(int? id)
+        {
+            if(id == null)
+                return View();
+            
+            ChilLaxContext db = new ChilLaxContext();
+            ProductOrder prod = db.ProductOrders.FirstOrDefault(p => p.OrderId==id); 
+            return View(prod);
+        }
+    
+  
     }
 }
