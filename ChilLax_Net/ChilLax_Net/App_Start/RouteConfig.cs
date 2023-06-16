@@ -16,7 +16,7 @@ namespace ChilLax_Net
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "PurchasController", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Purchas", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

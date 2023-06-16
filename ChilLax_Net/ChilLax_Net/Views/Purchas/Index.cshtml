@@ -1,75 +1,134 @@
-﻿@model IEnumerable<chilLax_Purchase.Models.ProductOrderDetail>
+﻿@model IEnumerable<chilLax_Net.Models.ProductOrderDetail>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>訂單資料列表</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("勿點會壞掉", "Index")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.member_id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.order_payment)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.order_totalPrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.order_delivery)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.order_address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.order_date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.order_note)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.order_state)
-        </th>
-        <th></th>
-    </tr>
+<table class="table table-sm">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductOrder.order_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MemberName)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.ProductOrder.OrderPayment)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.ProductOrder.order_totalPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductOrder.order_date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductOrder.order_address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductOrder.order_note)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductOrder.order_state)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var group in Model.GroupBy(item => item.ProductOrder.order_id))
+        {
+            var firstItem = group.First();
+            var item = group;
+            <tr class="clickable-row">
+                <td>
+                    @Html.DisplayFor(modelItem => firstItem.ProductOrder.order_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => firstItem.MemberName)
+                </td>
+                @*   <td>
+                        @Html.DisplayFor(modelItem => firstItem.ProductOrder.OrderPayment)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => firstItem.ProductOrder.order_totalPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => firstItem.ProductOrder.order_date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => firstItem.ProductOrder.order_address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => firstItem.ProductOrder.order_note)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => firstItem.ProductOrder.order_state)
+                </td>
+                <td>
+                    @Html.ActionLink("修改", "Edit", "Purchas", new { id = firstItem.ProductOrder.order_id },
+                new { @class = "btn btn-success" }) 
+                    @Html.ActionLink("刪除", "Detail", "Purchas", new { id = firstItem.ProductOrder.order_id },
+                new { onclick = "return confirm('確定要刪除嗎?')", Class = "btn btn-danger" })
+                </td>
+            </tr>
+            <tr class="details-row" id="details-row-@(firstItem.ProductOrder.order_id)" style="display: none;">
+                <td colspan="8">
+                    <!-- 詳細資料區塊 -->
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>@Html.DisplayNameFor(model => model.ProductName)</th>
+                                <th>@Html.DisplayNameFor(model => model.OrderDetail.cart_product_quantity)</th>
+                                <th>@Html.DisplayNameFor(model => model.ProductPrice)</th>
+                                <th>@Html.DisplayNameFor(model => model.Subtotal)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var detail in Model.Where(d => d.ProductOrder.order_id == firstItem.ProductOrder.order_id))
+                            {
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.member_id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.order_payment)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.order_totalPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.order_delivery)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.order_address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.order_date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.order_note)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.order_state)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.order_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.order_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.order_id })
-        </td>
-    </tr>
-}
+                                <tr>
+                                    <td>@detail.ProductName</td>
+                                    <td>@detail.OrderDetail.cart_product_quantity</td>
+                                    <td>@detail.ProductPrice</td>
+                                    <td>@detail.Subtotal</td>
+                                </tr>
+                            }
 
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let clickableRows = document.querySelectorAll(".clickable-row");
+
+        clickableRows.forEach(function (row) {
+            row.addEventListener("click", function () {
+                let orderId = this.querySelector("td:first-child").textContent.trim();
+                let detailsRow = document.querySelector("#details-row-" + orderId);
+
+                if (detailsRow.style.display === "table-row") {
+                    detailsRow.style.display = "none";
+                } else {
+                    let allDetailsRows = document.querySelectorAll(".details-row");
+
+                    allDetailsRows.forEach(function (row) {
+                        row.style.display = "none";
+                    });
+
+                    detailsRow.style.display = "table-row";
+                }
+            });
+        });
+    });
+</script>
+

@@ -1,4 +1,4 @@
-﻿using chilLax_Purchase.Models;
+﻿using chilLax_Net.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,40 +42,29 @@ namespace ChilLax_Net.Controllers
                     db.SaveChanges();
                 }
             }
-            return RedirectToAction("List");
-        }
-
-        // GET: Purchas/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Purchas/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
         }
 
         // GET: Purchas/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            if (id == null)
-                return View();
-
-            ChilLaxModels db = new ChilLaxModels();
-            ProductOrder prod = db.ProductOrder.FirstOrDefault(p => p.order_id == id);
-            return View(prod);
+            if (id != null)
+            {
+                ChilLaxModels db = new ChilLaxModels();
+                List<ProductOrderDetail> productOrderDetails = db.ProductOrder
+                    .Join(db.OrderDetail,
+                        po => po.order_id,
+                        od => od.order_id,
+                        (po, od) => new ProductOrderDetail
+                        {
+                            ProductOrder = po,
+                            OrderDetail = od
+                        })
+                    .Where(po => po.ProductOrder.order_id == id)
+                    .ToList();
+                return View(productOrderDetails);
+            }
+            return RedirectToAction("Index");
         }
 
         // POST: Purchas/Edit/5
@@ -94,26 +83,6 @@ namespace ChilLax_Net.Controllers
             }
         }
 
-        // GET: Purchas/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Purchas/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+       
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace chilLax_Purchase.Models
+﻿namespace chilLax_Net.Models
 {
     using ChilLax_Net;
     using Microsoft;
