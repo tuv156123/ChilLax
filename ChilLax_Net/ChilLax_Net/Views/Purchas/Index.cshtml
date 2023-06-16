@@ -1,0 +1,75 @@
+﻿@model IEnumerable<chilLax_Purchase.Models.ProductOrderDetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.member_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.order_payment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.order_totalPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.order_delivery)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.order_address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.order_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.order_note)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.order_state)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.member_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.order_payment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.order_totalPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.order_delivery)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.order_address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.order_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.order_note)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.order_state)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.order_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.order_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.order_id })
+        </td>
+    </tr>
+}
+
+</table>
