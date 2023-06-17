@@ -1,0 +1,58 @@
+﻿@model ChilLaxBackEnd.Models.FocusSlideWrapper
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>修改作業</h2>
+
+
+@using (Html.BeginForm("Edit", "Focus", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>FocusSlide</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.focus_id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.category, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.category, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.category, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.image, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="image" class="form-control" accept=".png,.jpg,.jpeg"/>
+                @Html.ValidationMessageFor(model => model.image, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.audio, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="audio" class="form-control" accept=".mp3,.m4a"/>
+                @Html.ValidationMessageFor(model => model.audio, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="修改" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+<div class="col-md-offset-2 col-md-10">
+    @Html.ActionLink("返回至清單", "List", null, new {@class = "btn btn-info"})
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

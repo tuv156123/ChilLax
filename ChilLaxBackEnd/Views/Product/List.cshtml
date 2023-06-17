@@ -1,0 +1,121 @@
+﻿@model IEnumerable<ChilLaxBackEnd.Models.Product>
+
+@{
+    ViewBag.Title = "產品資料一覽表";
+}
+
+<h2>產品資料一覽表</h2>
+@using (Html.BeginForm())
+{
+    <p>
+        關鍵字 @Html.TextBox("txtKeyword")
+        <input type="submit" value="查詢" />
+    </p>
+}
+<br />
+<div class="create_product">
+    @Html.ActionLink("新增產品", "Create")
+</div>
+<table class="table table-striped table-bordered">
+    <tr>
+        <th style="text-align:center">
+            序號
+        </th>
+
+        <th style="text-align:center">
+            品名
+        </th>
+
+        <!--<th>
+        產品描述-->
+        <!--@Html.DisplayNameFor(model => model.product_desc)-->
+        <!--</th>-->
+        <th style="text-align:center">
+            產品價格
+            <!--@Html.DisplayNameFor(model => model.product_price)-->
+        </th>
+
+        <th style="text-align:center">
+            產品圖片
+            <!--@Html.DisplayNameFor(model => model.product_img)-->
+        </th>
+
+        <th style="text-align:center">
+            產品數量
+            <!--@Html.DisplayNameFor(model => model.product_quantity)-->
+        </th>
+
+        <th style="text-align:center">
+            產品類別
+            <!--@Html.DisplayNameFor(model => model.product_category)-->
+        </th>
+
+        <th style="text-align:center">
+            供應商編號
+            <!--@Html.DisplayNameFor(model => model.supplier_id)-->
+        </th>
+
+        <th style="text-align:center">
+            產品狀態
+            <!--@Html.DisplayNameFor(model => model.product_state)-->
+        </th>
+
+        <th></th>
+    </tr>
+
+    @{
+        int count = 0;
+        foreach (var item in Model)
+        {
+            count++;
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.product_id)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.product_name)
+                </td>
+
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.product_desc)
+                    </td>*@
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.product_price)
+                </td>
+
+                <td>
+                    <img src="~/assets/images/@item.product_img" width="100" height="120" />
+                    @*@Html.DisplayFor(modelItem => item.product_img)*@
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.product_quantity)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.product_category)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.supplier_id)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.product_state)
+                </td>
+
+                <td>
+                    @Html.ActionLink("修改", "Edit", "Product", new { id = item.product_id },
+                                  new { @class = "btn btn-success" }) |
+                    @Html.ActionLink("詳細說明", "Details", "Product", new { id = item.product_id },
+                                  new { @class = "btn btn-info" }) |
+                    @Html.ActionLink("刪除", "Delete", "Product", new { id = item.product_id },
+                             new { onclick = "return confirm('確定要刪除嗎?')", Class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    }
+
+</table>

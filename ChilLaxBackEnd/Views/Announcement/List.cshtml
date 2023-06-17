@@ -1,0 +1,108 @@
+﻿@model IEnumerable<ChilLaxBackEnd.Models.AnnouncementWrapper>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>公告管理</h2>
+
+@if (TempData["InfoMessage"] != null)
+{
+    <div class="alert alert-info">
+        <strong>@TempData["InfoMessage"]</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span>&times;</span>
+        </button>
+    </div>
+}
+else if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong>@TempData["SuccessMessage"]</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span>&times;</span>
+        </button>
+    </div>
+}
+else if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>@TempData["ErrorMessage"]</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span>&times;</span>
+        </button>
+    </div>
+}
+
+<p>
+    @Html.ActionLink("新增", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+<div>
+    @using (Html.BeginForm("List", "Announcement", FormMethod.Get))
+    {
+        <span>起始日</span>
+        <input type="date" name="start" />
+        <span>終止日</span>
+        <input type="date" name="end" />
+        <input type="submit" value="搜尋" class="btn btn-info" />
+    }
+</div>
+
+<br />
+
+<table class="table table-hover table-bordered">
+    <tr>
+        <th>
+            <b>No.</b>
+        </th>
+        <th>
+            <b>@Html.DisplayNameFor(model => model.announcement)</b>
+        </th>
+        <th>
+            <b>@Html.DisplayNameFor(model => model.start_date)</b>
+        </th>
+        <th>
+            <b>@Html.DisplayNameFor(model => model.end_date)</b>
+        </th>
+        <th>
+            <b>@Html.DisplayNameFor(model => model.bonus_for_focus)</b>
+        </th>
+        <th>
+            <b>@Html.DisplayNameFor(model => model.bonus_for_shopping)</b>
+        </th>
+        <th>
+            <b>編輯</b>
+        </th>
+    </tr>
+
+    @{
+        int cnt = 0;
+        foreach (var item in Model)
+        {
+            cnt++;
+            <tr>
+                <td>@cnt</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.announcement)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.start_date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.end_date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.bonus_for_focus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.bonus_for_shopping)
+                </td>
+                <td>
+                    @Html.ActionLink("修改", "Edit", "Announcement", new { id = item.announcement_id }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("刪除", "Delete", "Announcement", new { id = item.announcement_id }, new { @class = "btn btn-danger", onclick = "return confirm('確定要刪除嗎?')" })
+                </td>
+            </tr>
+        }
+    }
+</table>

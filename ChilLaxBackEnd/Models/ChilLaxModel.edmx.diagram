@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e47c49bfec2442b5a11f70cd3bd48c03" Name="Diagram1">
+        <EntityTypeShape EntityType="ChilLaxModel.Announcement" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChilLaxModel.Cart" Width="1.5" PointX="6" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChilLaxModel.CustomerService" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChilLaxModel.Employee" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChilLaxModel.FocusDetail" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChilLaxModel.FocusSlide" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChilLaxModel.Member" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChilLaxModel.MemberCredential" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChilLaxModel.OrderDetail" Width="1.5" PointX="5.25" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChilLaxModel.PointHistory" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChilLaxModel.Product" Width="1.5" PointX="3.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChilLaxModel.ProductOrder" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChilLaxModel.Purchase" Width="1.5" PointX="3.75" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChilLaxModel.PurchaseDetail" Width="1.5" PointX="8" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChilLaxModel.Supplier" Width="1.5" PointX="1.5" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChilLaxModel.sysdiagrams" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChilLaxModel.TarotCard" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChilLaxModel.TarotOrder" Width="1.5" PointX="3" PointY="17.625" IsExpanded="true" />
+        <AssociationConnector Association="ChilLaxModel.FK_Cart_Member" ManuallyRouted="false" />
+        <AssociationConnector Association="ChilLaxModel.FK_Cart_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="ChilLaxModel.FK_MemberService_Member" ManuallyRouted="false" />
+        <AssociationConnector Association="ChilLaxModel.FK_MemberCredential_Member" ManuallyRouted="false" />
+        <AssociationConnector Association="ChilLaxModel.FK_Order_Member" ManuallyRouted="false" />
+        <AssociationConnector Association="ChilLaxModel.FK_PointDetail_Member" ManuallyRouted="false" />
+        <AssociationConnector Association="ChilLaxModel.FK_TarotOrder_Member" ManuallyRouted="false" />
+        <AssociationConnector Association="ChilLaxModel.FK_OrderDetail_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="ChilLaxModel.FK_OrderDetail_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="ChilLaxModel.FK_Product_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="ChilLaxModel.FK_PurchaseDetail_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="ChilLaxModel.FK_Purchase_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="ChilLaxModel.FK_PurchaseDetail_Purchase" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ChilLaxModel.HomeVideo" Width="1.5" PointX="8.375" PointY="9.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

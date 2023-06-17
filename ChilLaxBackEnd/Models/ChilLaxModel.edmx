@@ -1,0 +1,1257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ChilLaxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Announcement">
+          <Key>
+            <PropertyRef Name="announcement_id" />
+          </Key>
+          <Property Name="announcement_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="announcement" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="start_date" Type="date" Nullable="false" />
+          <Property Name="end_date" Type="date" Nullable="false" />
+          <Property Name="bonus_for_focus" Type="int" Nullable="false" />
+          <Property Name="bonus_for_shopping" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="member_id" />
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="member_id" Type="int" Nullable="false" />
+          <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cart_product_quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CustomerService">
+          <Key>
+            <PropertyRef Name="customer_service_id" />
+          </Key>
+          <Property Name="customer_service_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="member_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="message" Type="nvarchar(max)" />
+          <Property Name="reply" Type="nvarchar(max)" />
+          <Property Name="message_datetime" Type="nvarchar" MaxLength="50" />
+          <Property Name="reply_datetime" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="emp_id" />
+          </Key>
+          <Property Name="emp_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="emp_permission" Type="bit" Nullable="false" />
+          <Property Name="emp_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="emp_account" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="emp_password" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FocusDetail">
+          <Key>
+            <PropertyRef Name="focus_detail_id" />
+          </Key>
+          <Property Name="focus_detail_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="start_datetime" Type="datetime" Nullable="false" />
+          <Property Name="end_datetime" Type="datetime" Nullable="false" />
+          <Property Name="duration" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FocusSlide">
+          <Key>
+            <PropertyRef Name="focus_id" />
+          </Key>
+          <Property Name="focus_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="category" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="image_path" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="audio_path" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HomeVideo">
+          <Key>
+            <PropertyRef Name="video_id" />
+          </Key>
+          <Property Name="video_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="video_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="video_path" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="member_id" />
+          </Key>
+          <Property Name="member_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="member_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="member_tel" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="member_address" Type="nvarchar" MaxLength="100" />
+          <Property Name="member_email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="member_birthday" Type="date" Nullable="false" />
+          <Property Name="member_sex" Type="bit" />
+          <Property Name="member_point" Type="int" />
+          <Property Name="member_joinTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MemberCredential">
+          <Key>
+            <PropertyRef Name="member_id" />
+          </Key>
+          <Property Name="member_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="member_account" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="member_password" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="order_id" />
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="order_id" Type="int" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="cart_product_quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PointHistory">
+          <Key>
+            <PropertyRef Name="point_detail_id" />
+          </Key>
+          <Property Name="point_detail_id" Type="int" Nullable="false" />
+          <Property Name="member_id" Type="int" Nullable="false" />
+          <Property Name="modified_source" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="modified_amount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="supplier_id" Type="int" Nullable="false" />
+          <Property Name="product_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="product_desc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="product_price" Type="int" Nullable="false" />
+          <Property Name="product_img" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="product_quantity" Type="int" Nullable="false" />
+          <Property Name="product_category" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="product_state" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductOrder">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="order_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="member_id" Type="int" Nullable="false" />
+          <Property Name="order_payment" Type="bit" Nullable="false" />
+          <Property Name="order_totalPrice" Type="int" Nullable="false" />
+          <Property Name="order_delivery" Type="bit" Nullable="false" />
+          <Property Name="order_address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="order_date" Type="datetime" Nullable="false" />
+          <Property Name="order_note" Type="nvarchar(max)" />
+          <Property Name="order_state" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Purchase">
+          <Key>
+            <PropertyRef Name="purchase_id" />
+          </Key>
+          <Property Name="purchase_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="supplier_id" Type="int" Nullable="false" />
+          <Property Name="purchase_note" Type="nvarchar(max)" />
+          <Property Name="purchase_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PurchaseDetail">
+          <Key>
+            <PropertyRef Name="purchase_id" />
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="purchase_id" Type="int" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="purchase_quantity" Type="int" Nullable="false" />
+          <Property Name="purchase_price" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="supplier_id" />
+          </Key>
+          <Property Name="supplier_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="supplier_name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="supplier_tel" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="supplier_address" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TarotCard">
+          <Key>
+            <PropertyRef Name="tarotCard_id" />
+          </Key>
+          <Property Name="tarotCard_id" Type="int" Nullable="false" />
+          <Property Name="tarotCard_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="tarotCard_type" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TarotOrder">
+          <Key>
+            <PropertyRef Name="tarot_order_id" />
+          </Key>
+          <Property Name="tarot_order_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="member_id" Type="int" Nullable="false" />
+          <Property Name="card_result" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="divination_chat" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="tarot_time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Cart_Member">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="member_id" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="member_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cart_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberCredential_Member">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="MemberCredential" Type="Self.MemberCredential" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="member_id" />
+            </Principal>
+            <Dependent Role="MemberCredential">
+              <PropertyRef Name="member_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberService_Member">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="CustomerService" Type="Self.CustomerService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="member_id" />
+            </Principal>
+            <Dependent Role="CustomerService">
+              <PropertyRef Name="member_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Member">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="ProductOrder" Type="Self.ProductOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="member_id" />
+            </Principal>
+            <Dependent Role="ProductOrder">
+              <PropertyRef Name="member_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetail_Order">
+          <End Role="ProductOrder" Type="Self.ProductOrder" Multiplicity="1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductOrder">
+              <PropertyRef Name="order_id" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetail_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PointDetail_Member">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="PointHistory" Type="Self.PointHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="member_id" />
+            </Principal>
+            <Dependent Role="PointHistory">
+              <PropertyRef Name="member_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="supplier_id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="supplier_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+          <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="supplier_id" />
+            </Principal>
+            <Dependent Role="Purchase">
+              <PropertyRef Name="supplier_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseDetail_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="PurchaseDetail" Type="Self.PurchaseDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="PurchaseDetail">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseDetail_Purchase">
+          <End Role="Purchase" Type="Self.Purchase" Multiplicity="1" />
+          <End Role="PurchaseDetail" Type="Self.PurchaseDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Purchase">
+              <PropertyRef Name="purchase_id" />
+            </Principal>
+            <Dependent Role="PurchaseDetail">
+              <PropertyRef Name="purchase_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TarotOrder_Member">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="TarotOrder" Type="Self.TarotOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="member_id" />
+            </Principal>
+            <Dependent Role="TarotOrder">
+              <PropertyRef Name="member_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_generate_order" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="data_row" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_generate_purchase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="data_row" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_get_announcement_by_date" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start" Type="datetime" Mode="In" />
+          <Parameter Name="end" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="ChilLaxModelStoreContainer">
+          <EntitySet Name="Announcement" EntityType="Self.Announcement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerService" EntityType="Self.CustomerService" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FocusDetail" EntityType="Self.FocusDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FocusSlide" EntityType="Self.FocusSlide" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HomeVideo" EntityType="Self.HomeVideo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemberCredential" EntityType="Self.MemberCredential" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PointHistory" EntityType="Self.PointHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductOrder" EntityType="Self.ProductOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Purchase" EntityType="Self.Purchase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchaseDetail" EntityType="Self.PurchaseDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TarotCard" EntityType="Self.TarotCard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TarotOrder" EntityType="Self.TarotOrder" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cart_Member" Association="Self.FK_Cart_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cart_Product" Association="Self.FK_Cart_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberCredential_Member" Association="Self.FK_MemberCredential_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="MemberCredential" EntitySet="MemberCredential" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberService_Member" Association="Self.FK_MemberService_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="CustomerService" EntitySet="CustomerService" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Member" Association="Self.FK_Order_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="ProductOrder" EntitySet="ProductOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetail_Order" Association="Self.FK_OrderDetail_Order">
+            <End Role="ProductOrder" EntitySet="ProductOrder" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetail_Product" Association="Self.FK_OrderDetail_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PointDetail_Member" Association="Self.FK_PointDetail_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="PointHistory" EntitySet="PointHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Supplier" Association="Self.FK_Product_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase_Supplier" Association="Self.FK_Purchase_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Purchase" EntitySet="Purchase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseDetail_Product" Association="Self.FK_PurchaseDetail_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="PurchaseDetail" EntitySet="PurchaseDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseDetail_Purchase" Association="Self.FK_PurchaseDetail_Purchase">
+            <End Role="Purchase" EntitySet="Purchase" />
+            <End Role="PurchaseDetail" EntitySet="PurchaseDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TarotOrder_Member" Association="Self.FK_TarotOrder_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="TarotOrder" EntitySet="TarotOrder" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ChilLaxModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Announcement">
+          <Key>
+            <PropertyRef Name="announcement_id" />
+          </Key>
+          <Property Name="announcement_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="announcement" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="start_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="end_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="bonus_for_focus" Type="Int32" Nullable="false" />
+          <Property Name="bonus_for_shopping" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="member_id" />
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="member_id" Type="Int32" Nullable="false" />
+          <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cart_product_quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Member" Relationship="Self.FK_Cart_Member" FromRole="Cart" ToRole="Member" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Cart_Product" FromRole="Cart" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="CustomerService">
+          <Key>
+            <PropertyRef Name="customer_service_id" />
+          </Key>
+          <Property Name="customer_service_id" Type="Int32" Nullable="false" />
+          <Property Name="member_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="reply" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="message_datetime" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="reply_datetime" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Member" Relationship="Self.FK_MemberService_Member" FromRole="CustomerService" ToRole="Member" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="emp_id" />
+          </Key>
+          <Property Name="emp_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="emp_permission" Type="Boolean" Nullable="false" />
+          <Property Name="emp_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="emp_account" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="emp_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FocusDetail">
+          <Key>
+            <PropertyRef Name="focus_detail_id" />
+          </Key>
+          <Property Name="focus_detail_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="start_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="end_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="duration" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FocusSlide">
+          <Key>
+            <PropertyRef Name="focus_id" />
+          </Key>
+          <Property Name="focus_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="category" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="image_path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="audio_path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="member_id" />
+          </Key>
+          <Property Name="member_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="member_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="member_tel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="member_address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="member_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="member_birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="member_sex" Type="Boolean" />
+          <Property Name="member_point" Type="Int32" />
+          <Property Name="member_joinTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Cart" Relationship="Self.FK_Cart_Member" FromRole="Member" ToRole="Cart" />
+          <NavigationProperty Name="CustomerService" Relationship="Self.FK_MemberService_Member" FromRole="Member" ToRole="CustomerService" />
+          <NavigationProperty Name="MemberCredential" Relationship="Self.FK_MemberCredential_Member" FromRole="Member" ToRole="MemberCredential" />
+          <NavigationProperty Name="ProductOrder" Relationship="Self.FK_Order_Member" FromRole="Member" ToRole="ProductOrder" />
+          <NavigationProperty Name="PointHistory" Relationship="Self.FK_PointDetail_Member" FromRole="Member" ToRole="PointHistory" />
+          <NavigationProperty Name="TarotOrder" Relationship="Self.FK_TarotOrder_Member" FromRole="Member" ToRole="TarotOrder" />
+        </EntityType>
+        <EntityType Name="MemberCredential">
+          <Key>
+            <PropertyRef Name="member_id" />
+          </Key>
+          <Property Name="member_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="member_account" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="member_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Member" Relationship="Self.FK_MemberCredential_Member" FromRole="MemberCredential" ToRole="Member" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="order_id" />
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="order_id" Type="Int32" Nullable="false" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="cart_product_quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ProductOrder" Relationship="Self.FK_OrderDetail_Order" FromRole="OrderDetail" ToRole="ProductOrder" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_OrderDetail_Product" FromRole="OrderDetail" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="PointHistory">
+          <Key>
+            <PropertyRef Name="point_detail_id" />
+          </Key>
+          <Property Name="point_detail_id" Type="Int32" Nullable="false" />
+          <Property Name="member_id" Type="Int32" Nullable="false" />
+          <Property Name="modified_source" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="modified_amount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Member" Relationship="Self.FK_PointDetail_Member" FromRole="PointHistory" ToRole="Member" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="supplier_id" Type="Int32" Nullable="false" />
+          <Property Name="product_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="product_desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="product_price" Type="Int32" Nullable="false" />
+          <Property Name="product_img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="product_quantity" Type="Int32" Nullable="false" />
+          <Property Name="product_category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="product_state" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Cart" Relationship="Self.FK_Cart_Product" FromRole="Product" ToRole="Cart" />
+          <NavigationProperty Name="OrderDetail" Relationship="Self.FK_OrderDetail_Product" FromRole="Product" ToRole="OrderDetail" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK_Product_Supplier" FromRole="Product" ToRole="Supplier" />
+          <NavigationProperty Name="PurchaseDetail" Relationship="Self.FK_PurchaseDetail_Product" FromRole="Product" ToRole="PurchaseDetail" />
+        </EntityType>
+        <EntityType Name="ProductOrder">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="order_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="member_id" Type="Int32" Nullable="false" />
+          <Property Name="order_payment" Type="Boolean" Nullable="false" />
+          <Property Name="order_totalPrice" Type="Int32" Nullable="false" />
+          <Property Name="order_delivery" Type="Boolean" Nullable="false" />
+          <Property Name="order_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="order_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="order_note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="order_state" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Member" Relationship="Self.FK_Order_Member" FromRole="ProductOrder" ToRole="Member" />
+          <NavigationProperty Name="OrderDetail" Relationship="Self.FK_OrderDetail_Order" FromRole="ProductOrder" ToRole="OrderDetail" />
+        </EntityType>
+        <EntityType Name="Purchase">
+          <Key>
+            <PropertyRef Name="purchase_id" />
+          </Key>
+          <Property Name="purchase_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="supplier_id" Type="Int32" Nullable="false" />
+          <Property Name="purchase_note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="purchase_date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK_Purchase_Supplier" FromRole="Purchase" ToRole="Supplier" />
+          <NavigationProperty Name="PurchaseDetail" Relationship="Self.FK_PurchaseDetail_Purchase" FromRole="Purchase" ToRole="PurchaseDetail" />
+        </EntityType>
+        <EntityType Name="PurchaseDetail">
+          <Key>
+            <PropertyRef Name="purchase_id" />
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="purchase_id" Type="Int32" Nullable="false" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="purchase_quantity" Type="Int32" Nullable="false" />
+          <Property Name="purchase_price" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_PurchaseDetail_Product" FromRole="PurchaseDetail" ToRole="Product" />
+          <NavigationProperty Name="Purchase" Relationship="Self.FK_PurchaseDetail_Purchase" FromRole="PurchaseDetail" ToRole="Purchase" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="supplier_id" />
+          </Key>
+          <Property Name="supplier_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="supplier_name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="supplier_tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="supplier_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Product_Supplier" FromRole="Supplier" ToRole="Product" />
+          <NavigationProperty Name="Purchase" Relationship="Self.FK_Purchase_Supplier" FromRole="Supplier" ToRole="Purchase" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TarotCard">
+          <Key>
+            <PropertyRef Name="tarotCard_id" />
+          </Key>
+          <Property Name="tarotCard_id" Type="Int32" Nullable="false" />
+          <Property Name="tarotCard_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tarotCard_type" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TarotOrder">
+          <Key>
+            <PropertyRef Name="tarot_order_id" />
+          </Key>
+          <Property Name="tarot_order_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="member_id" Type="Int32" Nullable="false" />
+          <Property Name="card_result" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="divination_chat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tarot_time" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Member" Relationship="Self.FK_TarotOrder_Member" FromRole="TarotOrder" ToRole="Member" />
+        </EntityType>
+        <Association Name="FK_Cart_Member">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="member_id" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="member_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cart_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberService_Member">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="CustomerService" Type="Self.CustomerService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="member_id" />
+            </Principal>
+            <Dependent Role="CustomerService">
+              <PropertyRef Name="member_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberCredential_Member">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="MemberCredential" Type="Self.MemberCredential" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="member_id" />
+            </Principal>
+            <Dependent Role="MemberCredential">
+              <PropertyRef Name="member_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Member">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="ProductOrder" Type="Self.ProductOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="member_id" />
+            </Principal>
+            <Dependent Role="ProductOrder">
+              <PropertyRef Name="member_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PointDetail_Member">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="PointHistory" Type="Self.PointHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="member_id" />
+            </Principal>
+            <Dependent Role="PointHistory">
+              <PropertyRef Name="member_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TarotOrder_Member">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="TarotOrder" Type="Self.TarotOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="member_id" />
+            </Principal>
+            <Dependent Role="TarotOrder">
+              <PropertyRef Name="member_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetail_Order">
+          <End Role="ProductOrder" Type="Self.ProductOrder" Multiplicity="1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductOrder">
+              <PropertyRef Name="order_id" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetail_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="supplier_id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="supplier_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseDetail_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="PurchaseDetail" Type="Self.PurchaseDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="PurchaseDetail">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+          <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="supplier_id" />
+            </Principal>
+            <Dependent Role="Purchase">
+              <PropertyRef Name="supplier_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseDetail_Purchase">
+          <End Role="Purchase" Type="Self.Purchase" Multiplicity="1" />
+          <End Role="PurchaseDetail" Type="Self.PurchaseDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Purchase">
+              <PropertyRef Name="purchase_id" />
+            </Principal>
+            <Dependent Role="PurchaseDetail">
+              <PropertyRef Name="purchase_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ChilLaxEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Announcement" EntityType="Self.Announcement" />
+          <EntitySet Name="Cart" EntityType="Self.Cart" />
+          <EntitySet Name="CustomerService" EntityType="Self.CustomerService" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" />
+          <EntitySet Name="FocusDetail" EntityType="Self.FocusDetail" />
+          <EntitySet Name="FocusSlide" EntityType="Self.FocusSlide" />
+          <EntitySet Name="Member" EntityType="Self.Member" />
+          <EntitySet Name="MemberCredential" EntityType="Self.MemberCredential" />
+          <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" />
+          <EntitySet Name="PointHistory" EntityType="Self.PointHistory" />
+          <EntitySet Name="Product" EntityType="Self.Product" />
+          <EntitySet Name="ProductOrder" EntityType="Self.ProductOrder" />
+          <EntitySet Name="Purchase" EntityType="Self.Purchase" />
+          <EntitySet Name="PurchaseDetail" EntityType="Self.PurchaseDetail" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TarotCard" EntityType="Self.TarotCard" />
+          <EntitySet Name="TarotOrder" EntityType="Self.TarotOrder" />
+          <AssociationSet Name="FK_Cart_Member" Association="Self.FK_Cart_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cart_Product" Association="Self.FK_Cart_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberService_Member" Association="Self.FK_MemberService_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="CustomerService" EntitySet="CustomerService" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberCredential_Member" Association="Self.FK_MemberCredential_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="MemberCredential" EntitySet="MemberCredential" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Member" Association="Self.FK_Order_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="ProductOrder" EntitySet="ProductOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PointDetail_Member" Association="Self.FK_PointDetail_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="PointHistory" EntitySet="PointHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TarotOrder_Member" Association="Self.FK_TarotOrder_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="TarotOrder" EntitySet="TarotOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetail_Order" Association="Self.FK_OrderDetail_Order">
+            <End Role="ProductOrder" EntitySet="ProductOrder" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetail_Product" Association="Self.FK_OrderDetail_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Supplier" Association="Self.FK_Product_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseDetail_Product" Association="Self.FK_PurchaseDetail_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="PurchaseDetail" EntitySet="PurchaseDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase_Supplier" Association="Self.FK_Purchase_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Purchase" EntitySet="Purchase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseDetail_Purchase" Association="Self.FK_PurchaseDetail_Purchase">
+            <End Role="Purchase" EntitySet="Purchase" />
+            <End Role="PurchaseDetail" EntitySet="PurchaseDetail" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_generate_order">
+          <Parameter Name="data_row" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_generate_purchase">
+          <Parameter Name="data_row" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ChilLaxModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(ChilLaxModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="sp_get_announcement_by_date" ReturnType="Collection(ChilLaxModel.sp_get_announcement_by_date_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="GetFunctionAnmt" EntitySet="Announcement" ReturnType="Collection(ChilLaxModel.Announcement)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <EntitySet Name="HomeVideo" EntityType="ChilLaxModel.HomeVideo" />
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_get_announcement_by_date_Result">
+          <Property Type="Int32" Name="announcement_id" Nullable="false" />
+          <Property Type="String" Name="announcement" Nullable="false" MaxLength="1000" />
+          <Property Type="DateTime" Name="start_date" Nullable="false" />
+          <Property Type="DateTime" Name="end_date" Nullable="false" />
+          <Property Type="Int32" Name="bonus_for_focus" Nullable="false" />
+          <Property Type="Int32" Name="bonus_for_shopping" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="HomeVideo">
+          <Key>
+            <PropertyRef Name="video_id" />
+          </Key>
+          <Property Name="video_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="video_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="video_path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ChilLaxModelStoreContainer" CdmEntityContainer="ChilLaxEntities">
+          <EntitySetMapping Name="Announcement">
+            <EntityTypeMapping TypeName="ChilLaxModel.Announcement">
+              <MappingFragment StoreEntitySet="Announcement">
+                <ScalarProperty Name="announcement_id" ColumnName="announcement_id" />
+                <ScalarProperty Name="announcement" ColumnName="announcement" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="bonus_for_focus" ColumnName="bonus_for_focus" />
+                <ScalarProperty Name="bonus_for_shopping" ColumnName="bonus_for_shopping" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cart">
+            <EntityTypeMapping TypeName="ChilLaxModel.Cart">
+              <MappingFragment StoreEntitySet="Cart">
+                <ScalarProperty Name="member_id" ColumnName="member_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="cart_product_quantity" ColumnName="cart_product_quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerService">
+            <EntityTypeMapping TypeName="ChilLaxModel.CustomerService">
+              <MappingFragment StoreEntitySet="CustomerService">
+                <ScalarProperty Name="customer_service_id" ColumnName="customer_service_id" />
+                <ScalarProperty Name="member_ID" ColumnName="member_ID" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="reply" ColumnName="reply" />
+                <ScalarProperty Name="message_datetime" ColumnName="message_datetime" />
+                <ScalarProperty Name="reply_datetime" ColumnName="reply_datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="ChilLaxModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+                <ScalarProperty Name="emp_permission" ColumnName="emp_permission" />
+                <ScalarProperty Name="emp_name" ColumnName="emp_name" />
+                <ScalarProperty Name="emp_account" ColumnName="emp_account" />
+                <ScalarProperty Name="emp_password" ColumnName="emp_password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FocusDetail">
+            <EntityTypeMapping TypeName="ChilLaxModel.FocusDetail">
+              <MappingFragment StoreEntitySet="FocusDetail">
+                <ScalarProperty Name="focus_detail_id" ColumnName="focus_detail_id" />
+                <ScalarProperty Name="start_datetime" ColumnName="start_datetime" />
+                <ScalarProperty Name="end_datetime" ColumnName="end_datetime" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FocusSlide">
+            <EntityTypeMapping TypeName="ChilLaxModel.FocusSlide">
+              <MappingFragment StoreEntitySet="FocusSlide">
+                <ScalarProperty Name="focus_id" ColumnName="focus_id" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="image_path" ColumnName="image_path" />
+                <ScalarProperty Name="audio_path" ColumnName="audio_path" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Member">
+            <EntityTypeMapping TypeName="ChilLaxModel.Member">
+              <MappingFragment StoreEntitySet="Member">
+                <ScalarProperty Name="member_id" ColumnName="member_id" />
+                <ScalarProperty Name="member_name" ColumnName="member_name" />
+                <ScalarProperty Name="member_tel" ColumnName="member_tel" />
+                <ScalarProperty Name="member_address" ColumnName="member_address" />
+                <ScalarProperty Name="member_email" ColumnName="member_email" />
+                <ScalarProperty Name="member_birthday" ColumnName="member_birthday" />
+                <ScalarProperty Name="member_sex" ColumnName="member_sex" />
+                <ScalarProperty Name="member_point" ColumnName="member_point" />
+                <ScalarProperty Name="member_joinTime" ColumnName="member_joinTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberCredential">
+            <EntityTypeMapping TypeName="ChilLaxModel.MemberCredential">
+              <MappingFragment StoreEntitySet="MemberCredential">
+                <ScalarProperty Name="member_id" ColumnName="member_id" />
+                <ScalarProperty Name="member_account" ColumnName="member_account" />
+                <ScalarProperty Name="member_password" ColumnName="member_password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetail">
+            <EntityTypeMapping TypeName="ChilLaxModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetail">
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="cart_product_quantity" ColumnName="cart_product_quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PointHistory">
+            <EntityTypeMapping TypeName="ChilLaxModel.PointHistory">
+              <MappingFragment StoreEntitySet="PointHistory">
+                <ScalarProperty Name="point_detail_id" ColumnName="point_detail_id" />
+                <ScalarProperty Name="member_id" ColumnName="member_id" />
+                <ScalarProperty Name="modified_source" ColumnName="modified_source" />
+                <ScalarProperty Name="modified_amount" ColumnName="modified_amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="ChilLaxModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="supplier_id" ColumnName="supplier_id" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="product_desc" ColumnName="product_desc" />
+                <ScalarProperty Name="product_price" ColumnName="product_price" />
+                <ScalarProperty Name="product_img" ColumnName="product_img" />
+                <ScalarProperty Name="product_quantity" ColumnName="product_quantity" />
+                <ScalarProperty Name="product_category" ColumnName="product_category" />
+                <ScalarProperty Name="product_state" ColumnName="product_state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductOrder">
+            <EntityTypeMapping TypeName="ChilLaxModel.ProductOrder">
+              <MappingFragment StoreEntitySet="ProductOrder">
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="member_id" ColumnName="member_id" />
+                <ScalarProperty Name="order_payment" ColumnName="order_payment" />
+                <ScalarProperty Name="order_totalPrice" ColumnName="order_totalPrice" />
+                <ScalarProperty Name="order_delivery" ColumnName="order_delivery" />
+                <ScalarProperty Name="order_address" ColumnName="order_address" />
+                <ScalarProperty Name="order_date" ColumnName="order_date" />
+                <ScalarProperty Name="order_note" ColumnName="order_note" />
+                <ScalarProperty Name="order_state" ColumnName="order_state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Purchase">
+            <EntityTypeMapping TypeName="ChilLaxModel.Purchase">
+              <MappingFragment StoreEntitySet="Purchase">
+                <ScalarProperty Name="purchase_id" ColumnName="purchase_id" />
+                <ScalarProperty Name="supplier_id" ColumnName="supplier_id" />
+                <ScalarProperty Name="purchase_note" ColumnName="purchase_note" />
+                <ScalarProperty Name="purchase_date" ColumnName="purchase_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseDetail">
+            <EntityTypeMapping TypeName="ChilLaxModel.PurchaseDetail">
+              <MappingFragment StoreEntitySet="PurchaseDetail">
+                <ScalarProperty Name="purchase_id" ColumnName="purchase_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="purchase_quantity" ColumnName="purchase_quantity" />
+                <ScalarProperty Name="purchase_price" ColumnName="purchase_price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Supplier">
+            <EntityTypeMapping TypeName="ChilLaxModel.Supplier">
+              <MappingFragment StoreEntitySet="Supplier">
+                <ScalarProperty Name="supplier_id" ColumnName="supplier_id" />
+                <ScalarProperty Name="supplier_name" ColumnName="supplier_name" />
+                <ScalarProperty Name="supplier_tel" ColumnName="supplier_tel" />
+                <ScalarProperty Name="supplier_address" ColumnName="supplier_address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ChilLaxModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TarotCard">
+            <EntityTypeMapping TypeName="ChilLaxModel.TarotCard">
+              <MappingFragment StoreEntitySet="TarotCard">
+                <ScalarProperty Name="tarotCard_id" ColumnName="tarotCard_id" />
+                <ScalarProperty Name="tarotCard_name" ColumnName="tarotCard_name" />
+                <ScalarProperty Name="tarotCard_type" ColumnName="tarotCard_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TarotOrder">
+            <EntityTypeMapping TypeName="ChilLaxModel.TarotOrder">
+              <MappingFragment StoreEntitySet="TarotOrder">
+                <ScalarProperty Name="tarot_order_id" ColumnName="tarot_order_id" />
+                <ScalarProperty Name="member_id" ColumnName="member_id" />
+                <ScalarProperty Name="card_result" ColumnName="card_result" />
+                <ScalarProperty Name="divination_chat" ColumnName="divination_chat" />
+                <ScalarProperty Name="tarot_time" ColumnName="tarot_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="ChilLaxModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="ChilLaxModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="ChilLaxModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_generate_order" FunctionName="ChilLaxModel.Store.sp_generate_order" />
+          <FunctionImportMapping FunctionImportName="sp_generate_purchase" FunctionName="ChilLaxModel.Store.sp_generate_purchase" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="ChilLaxModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChilLaxModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="ChilLaxModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChilLaxModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ChilLaxModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ChilLaxModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_get_announcement_by_date" FunctionName="ChilLaxModel.Store.sp_get_announcement_by_date">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChilLaxModel.sp_get_announcement_by_date_Result">
+                <ScalarProperty Name="announcement_id" ColumnName="announcement_id" />
+                <ScalarProperty Name="announcement" ColumnName="announcement" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="bonus_for_focus" ColumnName="bonus_for_focus" />
+                <ScalarProperty Name="bonus_for_shopping" ColumnName="bonus_for_shopping" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetFunctionAnmt" FunctionName="ChilLaxModel.Store.sp_get_announcement_by_date" />
+          <EntitySetMapping Name="HomeVideo">
+            <EntityTypeMapping TypeName="ChilLaxModel.HomeVideo">
+              <MappingFragment StoreEntitySet="HomeVideo">
+                <ScalarProperty Name="video_path" ColumnName="video_path" />
+                <ScalarProperty Name="video_name" ColumnName="video_name" />
+                <ScalarProperty Name="video_id" ColumnName="video_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

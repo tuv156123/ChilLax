@@ -1,0 +1,125 @@
+﻿@{
+    Layout = null;
+}
+
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<style>
+    body {
+        background-color: #f4f4f4;
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        background-color: #ECF5FF;
+        border-radius: 4px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+        .container h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .container h4 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+    .form-group {
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+        .form-group p {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+    .form-control {
+        display: inline-block;
+        width: 100%;
+        padding: 8px;
+        font-size: 14px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        transition: border-color 0.3s;
+    }
+
+        .form-control:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 5px #007bff;
+        }
+
+    .btn-primary {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        background-color: #4F9D9D;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 50px;
+    }
+
+        .btn-primary:hover {
+            background-color: #D1E9E9;
+            color: black;
+            border: 1px solid #4F9D9D;
+        }
+
+    .error-message {
+        color: red;
+        font-size: 14px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="error-message">
+                @ViewBag.ErrorMessage
+            </div>
+        }
+        <h2>員工登入</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <h4>請輸入帳號密碼</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <p>帳號</p>
+                @Html.TextBox("txtAccount", "", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <p>密碼</p>
+                @Html.TextBox("txtPassword", "", new { @class = "form-control" })
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">登入</button>
+        }
+    </div>
+</body>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

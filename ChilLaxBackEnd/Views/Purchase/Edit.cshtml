@@ -1,0 +1,134 @@
+﻿@model IEnumerable<ChilLaxBackEnd.Models.ViewModels.ProductOrderDetail>
+
+@{
+    ViewBag.Title = "Edit";
+}
+<style>
+    .order_detail .order_detail_form {
+        display: flex;
+        gap: 10px;
+    }
+
+        .order_detail .order_detail_form .form-group .row-md-6 {
+            display: flex
+        }
+</style>
+<title>商品訂單修改</title>
+<h2>商品訂單</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal order_detail">
+        <h4>商品訂單修改</h4>
+        <hr />
+
+
+        <form method="post">
+            <div class="order_detail_form">
+                <div class="form-group">
+                    <div class="row-md-6">
+                        @Html.LabelFor(model => model.First().ProductOrder.order_id, htmlAttributes: new { @class = "control-label col-4" })
+                        @Html.EditorFor(model => model.First().ProductOrder.order_id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                    <div class="row-md-6">
+                        @Html.LabelFor(model => model.First().MemberName, htmlAttributes: new { @class = "control-label  col-4" })
+                        @Html.EditorFor(model => model.First().MemberName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                    <div class="row-md-6">
+                        @Html.LabelFor(model => model.First().ProductOrder.order_date, htmlAttributes: new { @class = "control-label col-4" })
+                        @Html.EditorFor(model => model.First().ProductOrder.order_date, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                    <div class="row-md-6">
+                        @Html.LabelFor(model => model.First().ProductOrder.order_payment, htmlAttributes: new { @class = "control-label col-4" })
+                        @Html.EditorFor(model => model.First().ProductOrder.order_payment, new { htmlAttributes = new { @class = "form-control" } })
+
+                    </div>
+
+                    <div class="row-md-6">
+                        <label for="floatingSelect" class="col-4">
+                            @Html.LabelFor(model => model.First().ProductOrder.order_state, htmlAttributes: new { @class = "control-label" })
+                        </label>
+
+                        @Html.DropDownListFor(model => model.First().ProductOrder.order_state, Model.First().orderStateSelectedList)
+
+                    </div>
+                    <div class="row-md-6">
+                        @Html.LabelFor(model => model.First().ProductOrder.order_delivery, htmlAttributes: new { @class = "control-label col-4" })
+                        @Html.EditorFor(model => model.First().ProductOrder.order_delivery, new { htmlAttributes = new { @class = "form-control" } })
+
+                    </div>
+                    <div class="row-md-6">
+                        @Html.LabelFor(model => model.First().ProductOrder.order_address, htmlAttributes: new { @class = "control-label col-4" })
+                        @Html.EditorFor(model => model.First().ProductOrder.order_address, new { htmlAttributes = new { @class = "form-control" } })
+
+                    </div>
+                    <div class="row-md-6">
+                        @Html.LabelFor(model => model.First().ProductOrder.order_note, htmlAttributes: new { @class = "control-label col-4" })
+                        @Html.EditorFor(model => model.First().ProductOrder.order_note, new { htmlAttributes = new { @class = "form-control" } })
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <!-- 商品明細 -->
+                    <table class="table table-sm table-success table-striped col-8">
+                        <thead>
+                            <tr>
+                                <th>@Html.DisplayNameFor(model => model.ProductName)</th>
+                                <th>@Html.DisplayNameFor(model => model.OrderDetail.cart_product_quantity)</th>
+                                <th>@Html.DisplayNameFor(model => model.ProductPrice)</th>
+                                <th>@Html.DisplayNameFor(model => model.Subtotal)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var detail in Model)
+                            {
+                                <tr>
+                                    <td>@detail.ProductName</td>
+                                    <td>@detail.OrderDetail.cart_product_quantity</td>
+                                    <td>@detail.ProductPrice</td>
+                                    <td>@detail.Subtotal</td>
+                                </tr>
+                            }
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    @Html.LabelFor(model => model.First().ProductOrder.order_totalPrice, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.First().ProductOrder.order_totalPrice, new { htmlAttributes = new { @class = "form-control", name = "ProductOrderDetail.ProductOrder.order_totalPrice", @readonly = "readonly" } })
+
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <!--編輯商品資訊-->
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="存檔" class="btn btn-primary" />
+                    @Html.ActionLink("回到列表", "Index", null, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </form>
+    </div>
+}
+
+<!--
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const selectElement = document.getElementById("floatingSelect");
+        selectElement.addEventListener("change", function () {
+            const selectedValue = selectElement.value;
+            // 在此處使用選擇的值執行相應的操作
+        });
+    });
+</script>
+-->

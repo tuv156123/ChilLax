@@ -1,0 +1,75 @@
+﻿@model ChilLaxBackEnd.Models.Employee
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>編輯員工資料</h2>
+
+
+@using (Html.BeginForm("Edit", "Employee", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>請修改員工資料</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <input type="hidden" name="emp_id" value="@Model.emp_id" />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.emp_permission, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <label class="custom-control custom-radio custom-control-inline">
+                    @Html.RadioButtonFor(model => model.emp_permission, true, new { @class = "custom-control-input" })
+                    <span class="custom-control-label">主管</span>
+                </label>
+                <label class="custom-control custom-radio custom-control-inline">
+                    @Html.RadioButtonFor(model => model.emp_permission, false, new { @class = "custom-control-input" })
+                    <span class="custom-control-label">員工</span>
+                </label>
+                @Html.ValidationMessageFor(model => model.emp_permission, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.emp_name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.emp_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.emp_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.emp_account, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.emp_account, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.emp_account, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.emp_password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.emp_password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.emp_password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-space btn-primary">
+                    儲存
+                </button>
+                <span>
+                    @Html.ActionLink("取消", "List", null, new { @class = "btn btn-space btn-secondary" })
+                </span>
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+

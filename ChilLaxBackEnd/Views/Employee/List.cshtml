@@ -1,0 +1,81 @@
+﻿@model IEnumerable<ChilLaxBackEnd.Models.Employee>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>員工資料表</h2>
+
+<p>
+    @Html.ActionLink("新增員工", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.emp_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.emp_permission)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.emp_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.emp_account)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.emp_password)
+        </th>
+        <th>
+            編輯
+        </th>
+        <th>
+            刪除
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.emp_id)
+            </td>
+            <td>
+                @{
+                    string displayPermission;
+                    if (item.emp_permission == true)
+                    {
+                        displayPermission = "主管";
+                    }
+                    else if (item.emp_permission == false)
+                    {
+                        displayPermission = "員工";
+                    }
+                    else
+                    {
+                        displayPermission = item.emp_permission.ToString();
+                    }
+                }
+
+                @Html.DisplayFor(modelItem => displayPermission)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.emp_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.emp_account)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.emp_password)
+            </td>
+            <td>
+                @Html.ActionLink("編輯", "Edit", new { id = item.emp_id }, new { @class = "btn btn-success" })
+            </td>
+            <td>
+                @Html.ActionLink("刪除", "Delete", new { id = item.emp_id }, new { onclick = "return confirm('確定要刪除嗎?')", Class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>

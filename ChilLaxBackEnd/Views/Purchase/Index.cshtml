@@ -1,0 +1,156 @@
+﻿@model IEnumerable<ChilLaxBackEnd.Models.ViewModels.ProductOrderDetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+<title>訂單資料列表</title>
+<h2>訂單資料列表</h2>
+
+
+<table class="table table-primary table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductOrder.order_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MemberName)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.ProductOrder.OrderPayment)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.ProductOrder.order_totalPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductOrder.order_date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductOrder.order_address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductOrder.order_note)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductOrder.order_state)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var group in Model.GroupBy(item => item.ProductOrder.order_id))
+        {
+            var firstItem = group.First();
+            var item = group;
+            <tr class="clickable-row">
+                <td>
+                    @Html.DisplayFor(modelItem => firstItem.ProductOrder.order_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => firstItem.MemberName)
+                </td>
+                @*   <td>
+                        @Html.DisplayFor(modelItem => firstItem.ProductOrder.OrderPayment)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => firstItem.ProductOrder.order_totalPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => firstItem.ProductOrder.order_date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => firstItem.ProductOrder.order_address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => firstItem.ProductOrder.order_note)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => firstItem.ProductOrder.order_state)
+                </td>
+                <td>
+                    @Html.ActionLink("修改", "Edit", "Purchase", new { id = firstItem.ProductOrder.order_id },
+                new { @class = "btn btn-success" })
+                    @Html.ActionLink("刪除", "Detail", "Purchase", new { id = firstItem.ProductOrder.order_id },
+                new { onclick = "return confirm('確定要刪除嗎?')", Class = "btn btn-danger" })
+                </td>
+            </tr>
+            <tr class="details-row" id="details-row-@(firstItem.ProductOrder.order_id)" style="display: none;">
+                <td colspan="8">
+                    <!-- 詳細資料區塊 -->
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>@Html.DisplayNameFor(model => model.ProductName)</th>
+                                <th>@Html.DisplayNameFor(model => model.OrderDetail.cart_product_quantity)</th>
+                                <th>@Html.DisplayNameFor(model => model.ProductPrice)</th>
+                                <th>@Html.DisplayNameFor(model => model.Subtotal)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var detail in Model.Where(d => d.ProductOrder.order_id == firstItem.ProductOrder.order_id))
+                            {
+
+                                <tr>
+                                    <td>@detail.ProductName</td>
+                                    <td>@detail.OrderDetail.cart_product_quantity</td>
+                                    <td>@detail.ProductPrice</td>
+                                    <td>@detail.Subtotal</td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        @*<li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>*@
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        @*<li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>*@
+    </ul>
+</nav>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let clickableRows = document.querySelectorAll(".clickable-row");
+
+        clickableRows.forEach(function (row) {
+            row.addEventListener("click", function () {
+                let orderId = this.querySelector("td:first-child").textContent.trim();
+                let detailsRow = document.querySelector("#details-row-" + orderId);
+
+                if (detailsRow.style.display === "table-row") {
+                    detailsRow.style.display = "none";
+                } else {
+                    let allDetailsRows = document.querySelectorAll(".details-row");
+
+                    allDetailsRows.forEach(function (row) {
+                        row.style.display = "none";
+                    });
+
+                    detailsRow.style.display = "table-row";
+                }
+            });
+        });
+        let btns = document.querySelectorAll(".btn");
+        btns.forEach(function (row) {
+            row.addEventListener("click", (e) => {
+                e.stopPropagation();
+            });
+        });
+    });
+</script>
+

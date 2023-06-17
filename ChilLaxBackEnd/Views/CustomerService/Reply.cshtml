@@ -1,0 +1,18 @@
+﻿@model ChilLaxBackEnd.Models.CustomerService
+
+<h2>回覆留言</h2>
+@using (Html.BeginForm("Reply", "CustomerService", FormMethod.Post))
+{
+    <div>
+        <label>訂單號：</label>
+        <input type="text" name="customer_service_id" value="@Model.customer_service_id" readonly />
+    </div>
+    <div>
+        <label>回覆內容：</label>
+<textarea name="reply"></textarea>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-default">回覆</button>
+        @Html.ActionLink("取消", "留言系統", "CustomerService", null, new { @class = "btn btn-default" })
+    </div>
+}

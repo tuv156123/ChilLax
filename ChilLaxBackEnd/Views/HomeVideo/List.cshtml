@@ -1,0 +1,109 @@
+﻿@model IEnumerable<ChilLaxBackEnd.Models.HomeVideoWrapper>
+
+@{
+    ViewBag.Title = "主頁影片管理";
+}
+
+
+@if (TempData["InfoMessage"] != null)
+{
+    <div class="alert alert-info">
+        <strong>@TempData["InfoMessage"]</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span>&times;</span>
+        </button>
+    </div>
+}
+else if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong>@TempData["SuccessMessage"]</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span>&times;</span>
+        </button>
+    </div>
+}
+else if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>@TempData["ErrorMessage"]</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span>&times;</span>
+        </button>
+    </div>
+}
+
+<h2>主頁影片管理</h2>
+
+<p>
+    @Html.ActionLink("新增", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+<div>
+    @using (Html.BeginForm("List", "HomeVideo", FormMethod.Get))
+    {
+        <table>
+            <tr>
+                <td>
+                    <b>搜尋條件: </b>
+                    <input type="radio" name="searchBy" value="主題" style="display:inline" checked />
+                    <span>主題</span>
+                    <input type="radio" name="searchBy" value="影片檔類型" style="display:inline" />
+                    <sapn>影片檔類型</sapn>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.TextBox("searchValue", null, new { @class = "form-control", placeholder = "請輸入關鍵字" })
+                </td>
+                <td>
+                    &nbsp;
+                </td>
+                <td>
+                    <input type="submit" value="搜尋" class="btn btn-info" />
+                </td>
+            </tr>
+        </table>
+    }
+</div>
+
+<br />
+<table class="table">
+    <tr>
+        <th>No.</th>
+        <th>
+            <b>@Html.DisplayNameFor(model => model.video_name)</b>
+        </th>
+        <th>
+            <b>@Html.DisplayNameFor(model => model.video)</b>
+        </th>
+        <th>
+            <b>編輯</b>
+        </th>
+    </tr>
+
+    @{
+        int cnt = 0;
+        foreach (var item in Model)
+        {
+            cnt++;
+            <tr>
+                <td>
+                    @cnt
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.video_name)
+                </td>
+                <td>
+                    <video src="~/assets/videos/@item.video_path" width="300" height="150" style="border-radius: 5px" controls>
+                        Your browser does not support the video tag.
+                    </video>
+                </td>
+                <td>
+                    @Html.ActionLink("修改", "Edit", new { id = item.video_id }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("刪除", "Delete", "HomeVideo", new { id = item.video_id }, new { @class = "btn btn-danger", onclick = "return confirm('確定要刪除嗎?')" })
+                </td>
+            </tr>
+        }
+    }
+</table>
