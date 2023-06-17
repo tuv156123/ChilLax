@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Edit";
 }
-
+<title>商品訂單修改</title>
 <h2>商品訂單</h2>
 
 
@@ -11,98 +11,110 @@
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <h4>商品訂單修改</h4>
-    <hr />
-
-    @*編輯商品資訊*@
-    @foreach (var group in Model.GroupBy(item => item.ProductOrder.order_id))
-    {
-        var firstItem = group.First();
-        var item = group;
-        <div class="form-group">
-            <div class="row">
-                <div class="col-md-2">
-                    @Html.LabelFor(model => firstItem.ProductOrder.order_id, htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => firstItem.ProductOrder.order_id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                </div>
-                <div class="col-md-3">
-                    @Html.LabelFor(model => firstItem.MemberName, htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => firstItem.MemberName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                </div>
-                <div class="col-md-3">
-                    @Html.LabelFor(model => firstItem.ProductOrder.order_date, htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => firstItem.ProductOrder.order_date, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                </div>
-                <div class="col-md-2">
-                    @Html.LabelFor(model => firstItem.ProductOrder.order_payment, htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => firstItem.ProductOrder.order_payment, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => firstItem.ProductOrder.order_payment, "", new { @class = "text-danger" })
-                </div>
-                <div class="col-md-2">
-
-                    <div class="form-floating">
-                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                            <option value="未出貨" @(firstItem.ProductOrder.order_state == "未出貨" ? "selected" : "")>未出貨</option>
-                            <option value="已出貨" @(firstItem.ProductOrder.order_state == "已出貨" ? "selected" : "")>已出貨</option>
-                            <option value="已完成" @(firstItem.ProductOrder.order_state == "已完成" ? "selected" : "")>已完成</option>
-                        </select>
-                        <label for="floatingSelect">
-                            @Html.LabelFor(model => firstItem.ProductOrder.order_state, htmlAttributes: new { @class = "control-label" })
-                        </label>
-                    </div>
-                </div>
-
-            </div>
-            <div class="row">
-                <div class="col-md-2">
-                    @Html.LabelFor(model => firstItem.ProductOrder.order_delivery, htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => firstItem.ProductOrder.order_delivery, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => firstItem.ProductOrder.order_delivery, "", new { @class = "text-danger" })
-                </div>
-                <div class="col-md-3">
-                    @Html.LabelFor(model => firstItem.ProductOrder.order_address, htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => firstItem.ProductOrder.order_address, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => firstItem.ProductOrder.order_address, "", new { @class = "text-danger" })
-                </div>
-                <div class="col-md-5">
-                    @Html.LabelFor(model => firstItem.ProductOrder.order_note, htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => firstItem.ProductOrder.order_note, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => firstItem.ProductOrder.order_note, "", new { @class = "text-danger" })
-                </div>
-                <div class="col-md-2">
-                    @Html.LabelFor(model => firstItem.ProductOrder.order_totalPrice, htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => firstItem.ProductOrder.order_totalPrice, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                </div>
-            </div>
-        </div>
+    <div class="form-horizontal">
+        <h4>商品訂單修改</h4>
         <hr />
-    }
-        <div class="form-group">
-            <!-- 商品明細 -->
-            <table class="table table-sm">
-                <thead>
-                    <tr>
-                        <th>@Html.DisplayNameFor(model => model.ProductName)</th>
-                        <th>@Html.DisplayNameFor(model => model.OrderDetail.cart_product_quantity)</th>
-                        <th>@Html.DisplayNameFor(model => model.ProductPrice)</th>
-                        <th>@Html.DisplayNameFor(model => model.Subtotal)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var detail in Model)
-                    {
-                        <tr>
-                            <td>@detail.ProductName</td>
-                            <td>@detail.OrderDetail.cart_product_quantity</td>
-                            <td>@detail.ProductPrice</td>
-                            <td>@detail.Subtotal</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
 
+        <!--編輯商品資訊-->
+        @foreach (var group in Model.GroupBy(item => item.ProductOrder.order_id))
+        {
+            var firstItem = group.First();
+            var item = group;
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-2">
+                        @Html.LabelFor(model => firstItem.ProductOrder.order_id, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => firstItem.ProductOrder.order_id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => firstItem.MemberName, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => firstItem.MemberName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => firstItem.ProductOrder.order_date, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => firstItem.ProductOrder.order_date, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.LabelFor(model => firstItem.ProductOrder.order_payment, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => firstItem.ProductOrder.order_payment, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => firstItem.ProductOrder.order_payment, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-2">
+
+                        <div class="form-floating">
+                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                <option value="未出貨" @(firstItem.ProductOrder.order_state == "未出貨" ? "selected" : "")>未出貨</option>
+                                <option value="已出貨" @(firstItem.ProductOrder.order_state == "已出貨" ? "selected" : "")>已出貨</option>
+                                <option value="已完成" @(firstItem.ProductOrder.order_state == "已完成" ? "selected" : "")>已完成</option>
+                            </select>
+                            <label for="floatingSelect">
+                                @Html.LabelFor(model => firstItem.ProductOrder.order_state, htmlAttributes: new { @class = "control-label" })
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        @Html.LabelFor(model => firstItem.ProductOrder.order_delivery, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => firstItem.ProductOrder.order_delivery, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => firstItem.ProductOrder.order_delivery, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => firstItem.ProductOrder.order_address, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => firstItem.ProductOrder.order_address, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => firstItem.ProductOrder.order_address, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-7">
+                        @Html.LabelFor(model => firstItem.ProductOrder.order_note, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => firstItem.ProductOrder.order_note, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => firstItem.ProductOrder.order_note, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+            </div>
+            <hr />
+
+            <div class="form-group">
+                <!-- 商品明細 -->
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.ProductName)</th>
+                            <th>@Html.DisplayNameFor(model => model.OrderDetail.cart_product_quantity)</th>
+                            <th>@Html.DisplayNameFor(model => model.ProductPrice)</th>
+                            <th>@Html.DisplayNameFor(model => model.Subtotal)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var detail in Model)
+                        {
+                            <tr>
+                                <td>@detail.ProductName</td>
+                                <td>@detail.OrderDetail.cart_product_quantity</td>
+                                <td>@detail.ProductPrice</td>
+                                <td>@detail.Subtotal</td>
+                            </tr>
+                        }
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            @Html.LabelFor(model => firstItem.ProductOrder.order_totalPrice, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => firstItem.ProductOrder.order_totalPrice, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="form-group text-end float-end">
+                            <div class="col-md-2">
+                            </div>
+                
+            </div>
+
+        }
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="存檔" class="btn btn-default" />
@@ -115,6 +127,7 @@
     @Html.ActionLink("回到列表", "Index", null, new { @class = "btn btn-primary" })
 </div>
 
+<!--
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const selectElement = document.getElementById("floatingSelect");
@@ -124,3 +137,4 @@
         });
     });
 </script>
+-->
