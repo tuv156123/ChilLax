@@ -33,7 +33,7 @@
                             <div id="currentTime" class="top-search-bar">                               
                             </div>
                         </li>
-                        <li class="nav-item dropdown notification">
+                        @*<li class="nav-item dropdown notification">
                             <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="indicator"></span></a>
                             <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
                                 <li>
@@ -83,8 +83,8 @@
                                     <div class="list-footer"> <a href="#">View all notifications</a></div>
                                 </li>
                             </ul>
-                        </li>
-                        <li class="nav-item dropdown connection">
+                        </li>*@
+                        @*<li class="nav-item dropdown connection">
                             <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-fw fa-th"></i> </a>
                             <ul class="dropdown-menu dropdown-menu-right connection-dropdown">
                                 <li class="connection-list">
@@ -115,7 +115,7 @@
                                     <div class="conntection-footer"><a href="#">More</a></div>
                                 </li>
                             </ul>
-                        </li>
+                        </li>*@
                         <li class="nav-item dropdown nav-user">
                             <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="~/assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle"></a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
@@ -125,7 +125,7 @@
                                 </div>
                                 <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
                                 <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                                <a class="dropdown-item" href="/Common/Login"><i class="fas fa-power-off mr-2"></i>Logout</a>
                             </div>
                         </li>
                     </ul>
@@ -346,7 +346,7 @@
                                         </ul>
                                     </div>*@
                                 </li>
-                                <li class="nav-item">
+                                @*<li class="nav-item">
                                     <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-7" aria-controls="submenu-7"><i class="fas fa-fw fa-inbox"></i>占卜 <span class="badge badge-secondary">New</span></a>
                                     <div id="submenu-7" class="collapse submenu" style="">
                                         <ul class="nav flex-column">
@@ -364,9 +364,9 @@
                                             </li>
                                         </ul>
                                     </div>
-                                </li>
+                                </li>*@
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-8" aria-controls="submenu-8"><i class="fas fa-fw fa-columns"></i>商品</a>
+                                    <a class="nav-link" href="/Product/List"><i class="fas fa-fw fa-columns"></i>商品</a>
                                     <div id="submenu-8" class="collapse submenu" style="">
                                         <ul class="nav flex-column">
                                             <li class="nav-item">
@@ -391,17 +391,20 @@
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-9" aria-controls="submenu-9"><i class="fas fa-fw fa-map-marker-alt"></i>訂單</a>
+                                    <a class="nav-link" href="/Purchase/Index"><i class="fas fa-fw fa-map-marker-alt"></i>訂單</a>
                                     <div id="submenu-9" class="collapse submenu" style="">
                                         <ul class="nav flex-column">
                                             <li class="nav-item">
-                                                <a class="nav-link" href="Purchase/Index">商品訂單</a>
+                                                <a class="nav-link" href="pages/map-google.html">Google Maps</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="pages/map-vector.html">Vector Maps</a>
                                             </li>
                                         </ul>
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/CustomerService/List"><i class="fas fa-f fa-folder"></i>客服</a>
+                                    <a class="nav-link" href="/CustomerService/留言系統"><i class="fas fa-f fa-folder"></i>客服</a>
                                     @*<div id="submenu-10" class="collapse submenu" style="">
                                         <ul class="nav flex-column">
                                             <li class="nav-item">

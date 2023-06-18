@@ -1,4 +1,4 @@
-﻿@model ChilLaxBackEnd.Models.ProductWrapper
+﻿@model ChilLaxBackEnd.Models.Product
 
 @{
     ViewBag.Title = "Create";
@@ -6,10 +6,8 @@
 
 <h2>新增產品作業</h2>
 
-我在新增github
 
-
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 

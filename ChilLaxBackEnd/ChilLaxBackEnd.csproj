@@ -616,7 +616,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ChilLaxModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\AnnouncementWrapper.cs" />
+    <Compile Include="Models\ModelWrappers\AnnouncementWrapper.cs" />
     <Compile Include="Models\CustomerService.cs">
       <DependentUpon>ChilLaxModel.tt</DependentUpon>
     </Compile>
@@ -629,11 +629,11 @@
     <Compile Include="Models\FocusSlide.cs">
       <DependentUpon>ChilLaxModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\FocusSlideWrapper.cs" />
+    <Compile Include="Models\ModelWrappers\FocusSlideWrapper.cs" />
     <Compile Include="Models\HomeVideo.cs">
       <DependentUpon>ChilLaxModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\HomeVideoWrapper.cs" />
+    <Compile Include="Models\ModelWrappers\HomeVideoWrapper.cs" />
     <Compile Include="Models\Member.cs">
       <DependentUpon>ChilLaxModel.tt</DependentUpon>
     </Compile>
@@ -652,7 +652,6 @@
     <Compile Include="Models\ProductOrder.cs">
       <DependentUpon>ChilLaxModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ProductWrapper.cs" />
     <Compile Include="Models\Purchase.cs">
       <DependentUpon>ChilLaxModel.tt</DependentUpon>
     </Compile>
@@ -764,6 +763,7 @@
     <Content Include="Views\CustomerService\留言系統.cshtml" />
     <Content Include="Views\Purchase\Index.cshtml" />
     <Content Include="Views\Purchase\Edit.cshtml" />
+    <Content Include="Views\Product\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -97,6 +97,7 @@
                 @ViewBag.ErrorMessage
             </div>
         }
+        <img src="~/assets/images/logo1.png" width="100" height="100"/>
         <h2>員工登入</h2>
 
         @using (Html.BeginForm())
@@ -107,11 +108,11 @@
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
                 <p>帳號</p>
-                @Html.TextBox("txtAccount", "", new { @class = "form-control" })
+                @Html.TextBox("txtAccount", "", new { @class = "form-control", autocomplete="off"})
             </div>
             <div class="form-group">
                 <p>密碼</p>
-                @Html.TextBox("txtPassword", "", new { @class = "form-control" })
+                @Html.TextBox("txtPassword", "", new { @class = "form-control", autocomplete = "off", type="password"})
             </div>
 
 

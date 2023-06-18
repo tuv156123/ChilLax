@@ -16,7 +16,7 @@ using System.Web;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 
-namespace ChilLaxBackEnd
+namespace ChilLaxBackEnd.Models
 {
     using System;
     using System.Collections.Generic;
