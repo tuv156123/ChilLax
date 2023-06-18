@@ -5,25 +5,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace ChilLaxBackEnd.Controllers
 {
     public class PurchaseController : Controller
     {
         // GET: PurchaseController
-
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult Index(int? nowpage, int? _pageCount)
         {
             ChilLaxEntities db = new ChilLaxEntities();
 
-            int dataCount = db.ProductOrder.Count();
-            int pageCount = dataCount / 10;
-            if (dataCount % 10 != 0) pageCount += 1;
+            if (nowpage == null)
+            {
+                nowpage = 1;
+            }
+            int? pageCount = _pageCount;
+
+            if (_pageCount == null)
+            {
+                int dataCount = db.ProductOrder.Count();
+                pageCount = dataCount / 10;
+                if (dataCount % 10 != 0) pageCount += 1;
+            }
+            
 
             List<ProductOrderDetail> productOrderDetails = db
                 .ProductOrder
                 .OrderByDescending(p => p.order_date)
-                .Skip(10)
+                .Skip(10 * ((int)nowpage) - 1)
                 .Take(10)
                 .Join(db.OrderDetail,
                     po => po.order_id,
@@ -34,8 +45,35 @@ namespace ChilLaxBackEnd.Controllers
                         OrderDetail = od
                     }).ToList();
 
+            productOrderDetails.FirstOrDefault().pageCount = pageCount;
+            productOrderDetails.FirstOrDefault().nowpage = nowpage;
+
             return View(productOrderDetails);
         }
+        //public ActionResult Index(int nowpage, int pageCount)
+        //{
+            
+        //    ChilLaxEntities db = new ChilLaxEntities();
+
+        //    List<ProductOrderDetail> productOrderDetails = db
+        //        .ProductOrder
+        //        .OrderByDescending(p => p.order_date)
+        //        .Skip(10 * ((int)nowpage) - 1)
+        //        .Take(10)
+        //        .Join(db.OrderDetail,
+        //            po => po.order_id,
+        //            od => od.order_id,
+        //            (po, od) => new ProductOrderDetail
+        //            {
+        //                ProductOrder = po,
+        //                OrderDetail = od
+        //            }).ToList();
+
+        //    productOrderDetails.FirstOrDefault().nowpage = nowpage;
+        //    productOrderDetails.FirstOrDefault().pageCount = pageCount;
+
+        //    return View(productOrderDetails);
+        //}
 
         // GET: Purchas/Details/5
         public ActionResult Details(int id)

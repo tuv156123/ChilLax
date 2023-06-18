@@ -106,25 +106,48 @@
 </table>
 <nav aria-label="Page navigation example">
     <ul class="pagination">
-        @*<li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>*@
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        @*<li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>*@
+        @{
+            int? pageCount = Model.FirstOrDefault().pageCount;
+            if (Model.FirstOrDefault().nowpage < 5)
+            {
+                for (int i = 1; i <= 10; i++)
+                {
+                    <li class="page-item">
+                        @Html.ActionLink(i.ToString(), "Index", "Purchase", new { nowpage = i, pageCount = pageCount }, new { @class = "page-link" })
+                    </li>
+                }
+            }
+            else if (Model.FirstOrDefault().nowpage < Model.FirstOrDefault().pageCount - 5)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    int? Value = Model.FirstOrDefault().nowpage - 5;
+                    <li class="page-item">
+                        @Html.ActionLink((Value + i).ToString(), "Index", "Purchase", new { nowpage = (Value + i), pageCount = pageCount }, new { @class = "page-link" })
+                    </li>
+                }
+
+            }
+            else
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    int? Value = Model.FirstOrDefault().nowpage - 9;
+                    <li class="page-item">
+                        @Html.ActionLink((Value + i).ToString(), "Index", "Purchase", new { nowpage = (Value + i), pageCount = pageCount }, new { @class = "page-link" })
+                    </li>
+                }
+            }
+        }
+
     </ul>
 </nav>
 
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
+        
+
         let clickableRows = document.querySelectorAll(".clickable-row");
 
         clickableRows.forEach(function (row) {
@@ -152,5 +175,7 @@
             });
         });
     });
+
 </script>
+
 
