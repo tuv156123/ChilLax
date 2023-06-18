@@ -10,7 +10,10 @@ namespace ChilLaxBackEnd.Controllers
 {
     public class ProductController : Controller
     {
-
+        public ActionResult test()
+        { 
+            return View(); 
+        }
         public ActionResult List()
         {
             string keyword = Request.Form["txtKeyword"];
