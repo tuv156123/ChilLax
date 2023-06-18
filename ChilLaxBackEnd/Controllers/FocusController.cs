@@ -168,10 +168,11 @@ namespace ChilLaxBackEnd.Controllers
                 {
                     if (fsw.image != null)
                     {
+                        System.IO.File.Delete(Server.MapPath("~/assets/images/" + FS.image_path));
                         string photoName = Guid.NewGuid().ToString() + Path.GetExtension(fsw.image.FileName);
                         fsw.image.SaveAs(Server.MapPath("~/assets/images/" + photoName));
                         FS.image_path = photoName;
-                        System.IO.File.Delete(Server.MapPath("~/assets/images/" + FS.image_path));
+
                     }
                     if (fsw.audio != null)
                     {
