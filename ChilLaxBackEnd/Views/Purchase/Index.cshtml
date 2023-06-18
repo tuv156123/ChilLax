@@ -108,11 +108,11 @@
     <ul class="pagination">
         @{
             int? pageCount = Model.FirstOrDefault().pageCount;
-            if (Model.FirstOrDefault().nowpage < 5)
+            if (Model.FirstOrDefault().nowpage <= 5)
             {
                 for (int i = 1; i <= 10; i++)
                 {
-                    <li class="page-item">
+                    <li class="@(Model.FirstOrDefault().nowpage == i ? "page-item active" : "page-item")">
                         @Html.ActionLink(i.ToString(), "Index", "Purchase", new { nowpage = i, pageCount = pageCount }, new { @class = "page-link" })
                     </li>
                 }
@@ -121,9 +121,9 @@
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    int? Value = Model.FirstOrDefault().nowpage - 5;
-                    <li class="page-item">
-                        @Html.ActionLink((Value + i).ToString(), "Index", "Purchase", new { nowpage = (Value + i), pageCount = pageCount }, new { @class = "page-link" })
+                    int? Value = Model.FirstOrDefault().nowpage - 5 + i;
+                    <li class="@(Model.FirstOrDefault().nowpage == Value ? "page-item active" : "page-item")">
+                        @Html.ActionLink(Value.ToString(), "Index", "Purchase", new { nowpage = Value, pageCount = pageCount }, new { @class = "page-link" })
                     </li>
                 }
 
@@ -132,9 +132,9 @@
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    int? Value = Model.FirstOrDefault().nowpage - 9;
-                    <li class="page-item">
-                        @Html.ActionLink((Value + i).ToString(), "Index", "Purchase", new { nowpage = (Value + i), pageCount = pageCount }, new { @class = "page-link" })
+                    int? Value = Model.FirstOrDefault().nowpage - 9 + i;
+                    <li class="@(Model.FirstOrDefault().nowpage == Value ? "page-item active" : "page-item")">
+                        @Html.ActionLink(Value.ToString(), "Index", "Purchase", new { nowpage = Value, pageCount = pageCount }, new { @class = "page-link" })
                     </li>
                 }
             }
