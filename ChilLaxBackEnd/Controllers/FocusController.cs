@@ -176,10 +176,10 @@ namespace ChilLaxBackEnd.Controllers
                     }
                     if (fsw.audio != null)
                     {
+                        System.IO.File.Delete(Server.MapPath("~/assets/audios/" + FS.audio_path));
                         string audioName = Guid.NewGuid().ToString() + Path.GetExtension(fsw.audio.FileName);
                         fsw.audio.SaveAs(Server.MapPath("~/assets/audios/" + audioName));
                         FS.audio_path = audioName;
-                        System.IO.File.Delete(Server.MapPath("~/assets/audios/" + FS.audio_path));
                     }
                     FS.category = fsw.category;
                     db.SaveChanges();
