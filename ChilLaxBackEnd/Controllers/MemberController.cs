@@ -95,8 +95,8 @@ namespace ChilLaxBackEnd.Controllers
                         member.member_sex = mvm.member_sex;
 
                         db.SaveChanges();
-                    }
-                    ViewBag.ErrorMessage = "格式錯誤";
+                        return RedirectToAction("List");
+                    }                
 
                     return RedirectToAction("Edit");
                 }

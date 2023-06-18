@@ -18,7 +18,7 @@ namespace ChilLaxBackEnd.ViewModel
 
         [DisplayName("聯絡電話")]
         [Required(ErrorMessage = "電話必須填寫")]
-        [RegularExpression(@"^\d{10}$", ErrorMessage = "請輸入有效的電話號碼")]
+        [RegularExpression(@"^\d{4}-\d{6}$", ErrorMessage = "請輸入有效的電話號碼，格式為 0912-345678")]//改1
         public string member_tel { get; set; }
 
         [DisplayName("地址")]
@@ -31,6 +31,8 @@ namespace ChilLaxBackEnd.ViewModel
 
         [DisplayName("出生年月日")]
         [Required(ErrorMessage = "出生年月日必須填寫")]
+        [DataType(DataType.Date)]//改2
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]//改3
         public System.DateTime member_birthday { get; set; }
 
         [DisplayName("性別")]
@@ -41,6 +43,8 @@ namespace ChilLaxBackEnd.ViewModel
 
         [DisplayName("加入時間")]
         [Required(ErrorMessage = "加入時間必須填寫")]
+        [DataType(DataType.DateTime)]//改4
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]//改5
         public System.DateTime member_joinTime { get; set; }
 
         [DisplayName("會員帳號")]
