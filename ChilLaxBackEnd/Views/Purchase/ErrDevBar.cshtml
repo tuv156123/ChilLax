@@ -1,5 +1,4 @@
-﻿
-@model List<ChilLaxBackEnd.ViewModel.ModelChartJs>
+﻿@model List<ChilLaxBackEnd.ViewModel.ModelChartJs>
 
 @{
     ViewBag.Title = "Chart";
@@ -7,14 +6,14 @@
 
 <h2>Chart</h2>
 
-<canvas id="chart"></canvas>
 <script src="https://cdnjs.com/libraries/Chart.js"></script>
+<canvas id="chart"></canvas>
 @section scripts {
     <script>
-        var chartData = @Html.Raw(Json.Encode(Model));
+        let chartData = @Html.Raw(Json.Encode(Model));
 
-        var ctx = document.getElementById('chart').getContext('2d');
-        var chart = new Chart(ctx, {
+        let ctx = document.getElementById('chart').getContext('2d');
+        let chart = new Chart(ctx, {
             type: 'bar',
             data: {
                 labels: chartData.map(data => data.ORDER_DATE),
