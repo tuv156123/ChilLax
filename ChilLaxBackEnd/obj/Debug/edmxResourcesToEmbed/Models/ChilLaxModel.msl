@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ChilLaxModelStoreContainer" CdmEntityContainer="ChilLaxEntities">
+    <EntitySetMapping Name="Announcement">
+      <EntityTypeMapping TypeName="ChilLaxModel.Announcement">
+        <MappingFragment StoreEntitySet="Announcement">
+          <ScalarProperty Name="announcement_id" ColumnName="announcement_id" />
+          <ScalarProperty Name="announcement" ColumnName="announcement" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="bonus_for_focus" ColumnName="bonus_for_focus" />
+          <ScalarProperty Name="bonus_for_shopping" ColumnName="bonus_for_shopping" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cart">
+      <EntityTypeMapping TypeName="ChilLaxModel.Cart">
+        <MappingFragment StoreEntitySet="Cart">
+          <ScalarProperty Name="member_id" ColumnName="member_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="cart_product_quantity" ColumnName="cart_product_quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerService">
+      <EntityTypeMapping TypeName="ChilLaxModel.CustomerService">
+        <MappingFragment StoreEntitySet="CustomerService">
+          <ScalarProperty Name="customer_service_id" ColumnName="customer_service_id" />
+          <ScalarProperty Name="member_ID" ColumnName="member_ID" />
+          <ScalarProperty Name="message" ColumnName="message" />
+          <ScalarProperty Name="reply" ColumnName="reply" />
+          <ScalarProperty Name="message_datetime" ColumnName="message_datetime" />
+          <ScalarProperty Name="reply_datetime" ColumnName="reply_datetime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employee">
+      <EntityTypeMapping TypeName="ChilLaxModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+          <ScalarProperty Name="emp_permission" ColumnName="emp_permission" />
+          <ScalarProperty Name="emp_name" ColumnName="emp_name" />
+          <ScalarProperty Name="emp_account" ColumnName="emp_account" />
+          <ScalarProperty Name="emp_password" ColumnName="emp_password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FocusDetail">
+      <EntityTypeMapping TypeName="ChilLaxModel.FocusDetail">
+        <MappingFragment StoreEntitySet="FocusDetail">
+          <ScalarProperty Name="focus_detail_id" ColumnName="focus_detail_id" />
+          <ScalarProperty Name="start_datetime" ColumnName="start_datetime" />
+          <ScalarProperty Name="end_datetime" ColumnName="end_datetime" />
+          <ScalarProperty Name="duration" ColumnName="duration" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FocusSlide">
+      <EntityTypeMapping TypeName="ChilLaxModel.FocusSlide">
+        <MappingFragment StoreEntitySet="FocusSlide">
+          <ScalarProperty Name="focus_id" ColumnName="focus_id" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="image_path" ColumnName="image_path" />
+          <ScalarProperty Name="audio_path" ColumnName="audio_path" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Member">
+      <EntityTypeMapping TypeName="ChilLaxModel.Member">
+        <MappingFragment StoreEntitySet="Member">
+          <ScalarProperty Name="member_id" ColumnName="member_id" />
+          <ScalarProperty Name="member_name" ColumnName="member_name" />
+          <ScalarProperty Name="member_tel" ColumnName="member_tel" />
+          <ScalarProperty Name="member_address" ColumnName="member_address" />
+          <ScalarProperty Name="member_email" ColumnName="member_email" />
+          <ScalarProperty Name="member_birthday" ColumnName="member_birthday" />
+          <ScalarProperty Name="member_sex" ColumnName="member_sex" />
+          <ScalarProperty Name="member_point" ColumnName="member_point" />
+          <ScalarProperty Name="member_joinTime" ColumnName="member_joinTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MemberCredential">
+      <EntityTypeMapping TypeName="ChilLaxModel.MemberCredential">
+        <MappingFragment StoreEntitySet="MemberCredential">
+          <ScalarProperty Name="member_id" ColumnName="member_id" />
+          <ScalarProperty Name="member_account" ColumnName="member_account" />
+          <ScalarProperty Name="member_password" ColumnName="member_password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetail">
+      <EntityTypeMapping TypeName="ChilLaxModel.OrderDetail">
+        <MappingFragment StoreEntitySet="OrderDetail">
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="cart_product_quantity" ColumnName="cart_product_quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PointHistory">
+      <EntityTypeMapping TypeName="ChilLaxModel.PointHistory">
+        <MappingFragment StoreEntitySet="PointHistory">
+          <ScalarProperty Name="point_detail_id" ColumnName="point_detail_id" />
+          <ScalarProperty Name="member_id" ColumnName="member_id" />
+          <ScalarProperty Name="modified_source" ColumnName="modified_source" />
+          <ScalarProperty Name="modified_amount" ColumnName="modified_amount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product">
+      <EntityTypeMapping TypeName="ChilLaxModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="supplier_id" ColumnName="supplier_id" />
+          <ScalarProperty Name="product_name" ColumnName="product_name" />
+          <ScalarProperty Name="product_desc" ColumnName="product_desc" />
+          <ScalarProperty Name="product_price" ColumnName="product_price" />
+          <ScalarProperty Name="product_img" ColumnName="product_img" />
+          <ScalarProperty Name="product_quantity" ColumnName="product_quantity" />
+          <ScalarProperty Name="product_category" ColumnName="product_category" />
+          <ScalarProperty Name="product_state" ColumnName="product_state" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductOrder">
+      <EntityTypeMapping TypeName="ChilLaxModel.ProductOrder">
+        <MappingFragment StoreEntitySet="ProductOrder">
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="member_id" ColumnName="member_id" />
+          <ScalarProperty Name="order_payment" ColumnName="order_payment" />
+          <ScalarProperty Name="order_totalPrice" ColumnName="order_totalPrice" />
+          <ScalarProperty Name="order_delivery" ColumnName="order_delivery" />
+          <ScalarProperty Name="order_address" ColumnName="order_address" />
+          <ScalarProperty Name="order_date" ColumnName="order_date" />
+          <ScalarProperty Name="order_note" ColumnName="order_note" />
+          <ScalarProperty Name="order_state" ColumnName="order_state" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Purchase">
+      <EntityTypeMapping TypeName="ChilLaxModel.Purchase">
+        <MappingFragment StoreEntitySet="Purchase">
+          <ScalarProperty Name="purchase_id" ColumnName="purchase_id" />
+          <ScalarProperty Name="supplier_id" ColumnName="supplier_id" />
+          <ScalarProperty Name="purchase_note" ColumnName="purchase_note" />
+          <ScalarProperty Name="purchase_date" ColumnName="purchase_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PurchaseDetail">
+      <EntityTypeMapping TypeName="ChilLaxModel.PurchaseDetail">
+        <MappingFragment StoreEntitySet="PurchaseDetail">
+          <ScalarProperty Name="purchase_id" ColumnName="purchase_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="purchase_quantity" ColumnName="purchase_quantity" />
+          <ScalarProperty Name="purchase_price" ColumnName="purchase_price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Supplier">
+      <EntityTypeMapping TypeName="ChilLaxModel.Supplier">
+        <MappingFragment StoreEntitySet="Supplier">
+          <ScalarProperty Name="supplier_id" ColumnName="supplier_id" />
+          <ScalarProperty Name="supplier_name" ColumnName="supplier_name" />
+          <ScalarProperty Name="supplier_tel" ColumnName="supplier_tel" />
+          <ScalarProperty Name="supplier_address" ColumnName="supplier_address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="ChilLaxModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TarotCard">
+      <EntityTypeMapping TypeName="ChilLaxModel.TarotCard">
+        <MappingFragment StoreEntitySet="TarotCard">
+          <ScalarProperty Name="tarotCard_id" ColumnName="tarotCard_id" />
+          <ScalarProperty Name="tarotCard_name" ColumnName="tarotCard_name" />
+          <ScalarProperty Name="tarotCard_type" ColumnName="tarotCard_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TarotOrder">
+      <EntityTypeMapping TypeName="ChilLaxModel.TarotOrder">
+        <MappingFragment StoreEntitySet="TarotOrder">
+          <ScalarProperty Name="tarot_order_id" ColumnName="tarot_order_id" />
+          <ScalarProperty Name="member_id" ColumnName="member_id" />
+          <ScalarProperty Name="card_result" ColumnName="card_result" />
+          <ScalarProperty Name="divination_chat" ColumnName="divination_chat" />
+          <ScalarProperty Name="tarot_time" ColumnName="tarot_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="ChilLaxModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="ChilLaxModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="ChilLaxModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_generate_order" FunctionName="ChilLaxModel.Store.sp_generate_order" />
+    <FunctionImportMapping FunctionImportName="sp_generate_purchase" FunctionName="ChilLaxModel.Store.sp_generate_purchase" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="ChilLaxModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ChilLaxModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="ChilLaxModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ChilLaxModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ChilLaxModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ChilLaxModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="sp_get_announcement_by_date" FunctionName="ChilLaxModel.Store.sp_get_announcement_by_date">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ChilLaxModel.sp_get_announcement_by_date_Result">
+          <ScalarProperty Name="announcement_id" ColumnName="announcement_id" />
+          <ScalarProperty Name="announcement" ColumnName="announcement" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="bonus_for_focus" ColumnName="bonus_for_focus" />
+          <ScalarProperty Name="bonus_for_shopping" ColumnName="bonus_for_shopping" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetFunctionAnmt" FunctionName="ChilLaxModel.Store.sp_get_announcement_by_date" />
+    <EntitySetMapping Name="HomeVideo">
+      <EntityTypeMapping TypeName="ChilLaxModel.HomeVideo">
+        <MappingFragment StoreEntitySet="HomeVideo">
+          <ScalarProperty Name="video_path" ColumnName="video_path" />
+          <ScalarProperty Name="video_name" ColumnName="video_name" />
+          <ScalarProperty Name="video_id" ColumnName="video_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
