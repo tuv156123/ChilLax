@@ -41,6 +41,8 @@ namespace ChilLaxBackEnd.Models.ViewModels
                     .FirstOrDefault();
 
         public int? pageCount;
+        public int? nowpage;
+
 
         public IEnumerable<SelectListItem> orderStateSelectedList { get; set; }
     }
