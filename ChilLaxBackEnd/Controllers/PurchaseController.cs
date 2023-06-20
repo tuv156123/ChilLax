@@ -1,11 +1,13 @@
 ﻿using ChilLaxBackEnd.Models.ViewModels;
 using ChilLaxBackEnd.Models;
+using ChilLaxBackEnd.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using System.Data.SqlClient;
 
 namespace ChilLaxBackEnd.Controllers
 {
@@ -50,31 +52,7 @@ namespace ChilLaxBackEnd.Controllers
 
             return View(productOrderDetails);
         }
-        //public ActionResult Index(int nowpage, int pageCount)
-        //{
-            
-        //    ChilLaxEntities db = new ChilLaxEntities();
-
-        //    List<ProductOrderDetail> productOrderDetails = db
-        //        .ProductOrder
-        //        .OrderByDescending(p => p.order_date)
-        //        .Skip(10 * ((int)nowpage) - 1)
-        //        .Take(10)
-        //        .Join(db.OrderDetail,
-        //            po => po.order_id,
-        //            od => od.order_id,
-        //            (po, od) => new ProductOrderDetail
-        //            {
-        //                ProductOrder = po,
-        //                OrderDetail = od
-        //            }).ToList();
-
-        //    productOrderDetails.FirstOrDefault().nowpage = nowpage;
-        //    productOrderDetails.FirstOrDefault().pageCount = pageCount;
-
-        //    return View(productOrderDetails);
-        //}
-
+        
         // GET: Purchas/Details/5
         public ActionResult Details(int id)
         {
@@ -148,6 +126,22 @@ namespace ChilLaxBackEnd.Controllers
             {
                 return View(po);
             }
+        }
+        public ActionResult ErrDevBar()
+        {
+            ChilLaxEntities db = new ChilLaxEntities();
+
+            List<ModelChartJs> chartData = db.Database.SqlQuery<ModelChartJs>(@"
+                WITH new_data AS (
+                   SELECT
+                    REPLACE(CONVERT(varchar(6), po.ORDER_DATE, 112), '-', '') AS OrderData,
+                    po.ORDER_TOTALPRICE
+                    FROM DBO.PRODUCTORDER PO
+                )
+                SELECT OrderData, SUM(ORDER_TOTALPRICE) AS Total FROM new_data GROUP BY OrderData;"
+            ).ToList();
+
+            return View(chartData);
         }
     }
 }

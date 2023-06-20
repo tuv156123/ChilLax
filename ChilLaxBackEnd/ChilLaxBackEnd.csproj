@@ -567,6 +567,8 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\chart.js" />
+    <Content Include="Scripts\chart.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -616,6 +618,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ChilLaxModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\ModelChartJs.cs" />
     <Compile Include="Models\ModelWrappers\AnnouncementWrapper.cs" />
     <Compile Include="Models\CustomerService.cs">
       <DependentUpon>ChilLaxModel.tt</DependentUpon>
@@ -764,6 +767,7 @@
     <Content Include="Views\Purchase\Index.cshtml" />
     <Content Include="Views\Purchase\Edit.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\Purchase\ErrDevBar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
