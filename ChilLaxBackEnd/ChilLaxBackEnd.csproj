@@ -768,6 +768,7 @@
     <Content Include="Views\Purchase\Edit.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\Purchase\ErrDevBar.cshtml" />
+    <Content Include="Views\CustomerService\Processed.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

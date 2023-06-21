@@ -1,0 +1,26 @@
+﻿@model IEnumerable<ChilLaxBackEnd.Models.CustomerService>
+
+@{
+    ViewBag.Title = "查看已回覆的留言";
+}
+
+<h2>
+    已回覆的留言
+</h2>
+<div style:overflow>
+    @foreach (var message in Model.Where(m => m.reply != null && m.reply_datetime != null))
+    {
+        <div class="message-item">
+            <p>訂單號: @message.customer_service_id</p>
+            <p>會員編號: @message.member_ID</p>
+            <p>訊息: @message.message</p>
+            <p>留言時間: @message.message_datetime</p>
+            <p>回覆內容: @message.reply</p>
+            <p>回覆時間: @message.reply_datetime</p>
+            <p>-------------------------------------------</p>
+        </div>
+    }
+</div>
+<div class="col-md-offset-2 col-md-10">
+    @Html.ActionLink("返回", "留言系統", null, new { @class = "btn btn-info" })
+</div>

@@ -17,7 +17,15 @@ namespace ChilLaxBackEnd.Controllers
                         select p;
             return View(datas);
         }
-
+        public ActionResult Processed() 
+        {
+            ChilLaxEntities db = new ChilLaxEntities();
+            var datas已回覆 = from p in db.CustomerService
+                           select p; 
+            
+            return View(datas已回覆);
+        }
+        
         public ActionResult Reply(int? id)
         {
             // 根據 id 從資料庫中取得對應的留言
@@ -29,11 +37,12 @@ namespace ChilLaxBackEnd.Controllers
         }
 
         [HttpPost]
-        public ActionResult Reply(CustomerService message)
+        public  ActionResult Reply(CustomerService message)
         {
             // 在此處將回覆的訊息和時間存入資料庫
             ChilLaxEntities db = new ChilLaxEntities();
             CustomerService prod = db.CustomerService.FirstOrDefault(p => p.customer_service_id == message.customer_service_id);
+            
             if (prod != null)
             {
                 string reply_time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
@@ -44,6 +53,9 @@ namespace ChilLaxBackEnd.Controllers
 
             return RedirectToAction("留言系統");
         }
+
+       
+
 
     }
 }

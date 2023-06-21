@@ -6,19 +6,22 @@
 
 <style>
     .reply-block {
-        background-color: #FFD382;
+       
         padding: 10px;
         margin-top: 10px;
     }
 </style>
 
 <h2>客服回覆系統</h2>
-
-這是一個測試
-
+<p>
+    @Html.ActionLink("已回覆的留言", "Processed", null, new { @class = "btn btn-primary" })
+</p>
 @foreach (var message in Model)
 {
-    <div class="message-item">
+
+
+<div class="message-item">
+        @if (message.reply == null && message.reply_datetime == null) { 
         <h4>訂單號：@message.customer_service_id</h4>
         @Html.HiddenFor(model => message.member_ID)
         <p>會員編號：@message.member_ID</p>
@@ -31,30 +34,31 @@
                 <p>回覆時間：@message.reply_datetime</p>
             }
         </div>
-        @if (string.IsNullOrEmpty(message.reply))
+        if (string.IsNullOrEmpty(message.reply))
         {
             @*@Html.ActionLink("回覆留言", "Reply", "CustomerService", new { id = message.customer_service_id }, new { @class = "reply-link" + "btn btn-danger" })*@
             @Html.ActionLink("回覆留言", "Reply", "CustomerService", new { id = message.customer_service_id }, new { @Class = "btn btn-outline-secondary" })
         }
         <p>-------------------------------------------</p>
+        }
     </div>
 }
 
 @*<h2>新增留言</h2>
 
-@using (Html.BeginForm("Reply", "Home", FormMethod.Post))
-{
-    <div>
-        <label>訂單號：</label>
-        <input type="text" name="customer_service_id" />
-    </div>
-    <div>
-        <label>會員ID：</label>
-        <input type="text" name="member_ID" />
-    </div>
-    <div>
-        <label>訊息內容：</label>
-        <textarea name="message"></textarea>
-    </div>
-    <button type="submit">提交</button>
-}*@
+    @using (Html.BeginForm("Reply", "Home", FormMethod.Post))
+    {
+        <div>
+            <label>訂單號：</label>
+            <input type="text" name="customer_service_id" />
+        </div>
+        <div>
+            <label>會員ID：</label>
+            <input type="text" name="member_ID" />
+        </div>
+        <div>
+            <label>訊息內容：</label>
+            <textarea name="message"></textarea>
+        </div>
+        <button type="submit">提交</button>
+    }*@
