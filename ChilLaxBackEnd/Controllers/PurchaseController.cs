@@ -133,12 +133,13 @@ namespace ChilLaxBackEnd.Controllers
 
             List<ModelChartJs> chartData = db.Database.SqlQuery<ModelChartJs>(@"
                 WITH new_data AS (
-                   SELECT
-                    REPLACE(CONVERT(varchar(6), po.ORDER_DATE, 112), '-', '') AS order_date,
+                    SELECT REPLACE(CONVERT(varchar(6), po.ORDER_DATE, 112), '-', '') AS OrderDate,
                     po.ORDER_TOTALPRICE
                     FROM DBO.PRODUCTORDER PO
                 )
-                SELECT OrderData, SUM(ORDER_TOTALPRICE) AS Total FROM new_data GROUP BY ORDER_DATE"
+                SELECT OrderDate, SUM(ORDER_TOTALPRICE) AS Total
+                FROM new_data
+                GROUP BY OrderDate;"
             ).ToList();
 
             return View(chartData);
