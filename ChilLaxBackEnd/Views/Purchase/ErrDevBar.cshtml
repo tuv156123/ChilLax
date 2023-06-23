@@ -4,7 +4,7 @@
     ViewBag.Title = "Chart";
 }
 
-<h2>Chart</h2>
+<h2>月報表(收入)</h2>
 
 
 <canvas id="chart"></canvas>
@@ -17,12 +17,21 @@
         type: 'bar',
         data: {
             labels: chartData.map(data => data.OrderData),
-            datasets: [{
-                label: 'Total',
+            datasets: [
+            //    {
+            //    label: 'Total',
+            //    data: chartData.map(data => data.Total),
+            //    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            //    borderColor: 'rgba(75, 192, 192, 1)',
+            //    borderWidth: 1
+            //},
+            {
+                label: '月營收(淨利)',
                 data: chartData.map(data => data.Total),
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
+                borderWidth: 1,
+                type: 'line'
             }]
         },
     });
