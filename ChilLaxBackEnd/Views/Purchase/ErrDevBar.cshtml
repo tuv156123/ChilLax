@@ -5,31 +5,26 @@
 }
 
 <h2>Chart</h2>
-<body>
 
-<script src="https://cdnjs.com/libraries/Chart.js"></script>
+
 <canvas id="chart"></canvas>
-@section scripts {
-    <script>
-        let chartData = @Html.Raw(Json.Encode(Model));
 
-        let ctx = document.getElementById('chart').getContext('2d');
-        let chart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: chartData.map(data => data.ORDER_DATE),
-                datasets: [{
-                    label: 'Total',
-                    data: chartData.map(data => data.total),
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                // 設定圖表的選項
-            }
-        });
-    </script>
-}
-</body>
+<script>
+    var chartData = @Html.Raw(Json.Encode(Model));
+
+    var ctx = document.getElementById('chart');
+    var chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: chartData.map(data => data.OrderData),
+            datasets: [{
+                label: 'Total',
+                data: chartData.map(data => data.Total),
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+    });
+</script>
+
